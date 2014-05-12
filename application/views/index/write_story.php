@@ -54,11 +54,12 @@
 					
 						<!-- Content -->
 							<div class="content">
-								<form method="post" action="/api/write_story">
+								<form id="story_form" method="post" action="/api/write_story">
 
 									<div class="row half">
 										<div class="12u">
-											<textarea name="message" placeholder="給撿到瓶子的你，我..." rows="7"></textarea>
+											<input id="hidden_story_question" name="story_subject" type="hidden" value="">
+											<textarea name="story_content" placeholder="給撿到瓶子的你，我..." rows="7"></textarea>
 										</div>
 									</div>
 									<div class="row half no-collapse-1">
@@ -77,7 +78,7 @@
 										<div class="12u">
 											<p style="font-size:14px;">除了校系、筆名外我們不會透漏您的任何資訊<br>提醒您：越真摯的內容，越有機會讓撿到瓶子的人感動而回信</p>											
 											<ul class="buttons">
-												<li><a href="#" class="button special">送出漂流瓶</a></li>
+												<li><a id="story_send_btn" href="#" class="button special">送出漂流瓶</a></li>
 											</ul>
 										</div>
 									</div>
@@ -108,12 +109,34 @@ var questions = [
 	"你會和好朋友的前男/女朋友交往嗎？",
 	"小說，還是電影更會讓你沉迷？",
 	"對你來說，筆友是什麼？",
-	"你從別人口中得知最好的朋友一直以來都默默喜歡你，你會...？"
+	"你從別人口中得知最好的朋友一直以來都默默喜歡你，你會...？",
+	"單身是因為不夠勇敢不夠積極嗎？",
+	"曖昧的感覺是什麼？你喜歡嗎？",
+	"你想收到什麼禮物？",
+	"最近做了什麼夢？",
+	"對你來說，什麼是溫柔體貼？",
+	"最喜歡的一首歌？背後有什麼故事？",
+	"喜歡一個人去旅行還是結伴同遊呢？",
+	"人生最奇怪的夢想是什麼？",
+	"最近有看什麼電影嗎？有什麼心得？",
+	"跟遠方的朋友分享一本最近看的好書吧",
+	"每一次旅行，都是一個不同的故事。你有沒有最深刻的旅行經驗想要分享？",
+	"你發生過最糗的事是？",
+	"每次好朋友生日都要精心設計。有沒有特別自豪、想與人分享的整人驚喜呢？",
+	"有沒有一個心情或情緒是無法跟身邊任何一個人分享的？"
+
 ];
 	$( "#change_question" ).click(function() {
 		var item = questions[Math.floor(Math.random()*questions.length)];
+		$("#hidden_story_question").val(item);
 		$("#story_question").text(item);
 	});
+
+	$( "#story_send_btn" ).click(function() {
+		$("#story_form").submit();
+	});
+
+
 </script>
 
 	</body>

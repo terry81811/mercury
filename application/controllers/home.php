@@ -39,9 +39,28 @@ class Home extends CI_Controller
 	public function index()
 	{
 		$data['fb_login_url'] = $this->_fb_login_url();	
+
+        if ($this->session->userdata('user_id') == false) {
+			$data['login_logout_url'] = $this->_fb_login_url();	
+			$data['login_logout_text'] = 'Sign Up';	
+        }else{
+			$data['login_logout_url'] = '/api/logout';	
+        	$data['login_logout_text'] = 'Sign Out';	
+        }
+
 		$this->load->view('index/index',$data);
 	}
 
+	public function story_sent()
+	{
+		$user_id = $this->_require_login();
+		$user = $this->_get_user_byid($user_id);
+
+		$data['user_name'] = $user[0]['user_name'];
+		$data['login_logout_url'] = '/api/logout';	
+
+		$this->load->view('index/story_sent',$data);
+	}
 
 	public function write_story()
 	{

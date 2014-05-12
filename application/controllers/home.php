@@ -47,8 +47,9 @@ class Home extends CI_Controller
 			$data['login_logout_url'] = '/api/logout';	
         	$data['login_logout_text'] = 'Sign Out';	
         }
-
+		$this->load->view('index/twenty_head');
 		$this->load->view('index/index',$data);
+		$this->load->view('index/twenty_footer');
 	}
 
 	public function story_sent()
@@ -59,7 +60,9 @@ class Home extends CI_Controller
 		$data['user_name'] = $user[0]['user_name'];
 		$data['login_logout_url'] = '/api/logout';	
 
+		$this->load->view('index/twenty_head');
 		$this->load->view('index/story_sent',$data);
+		$this->load->view('index/twenty_footer');
 	}
 
 	public function write_story()
@@ -67,7 +70,11 @@ class Home extends CI_Controller
 		$user_id = $this->_require_login();
 		$user = $this->_get_user_byid($user_id);
 		$data['user_name'] = $user[0]['user_name'];
+
+
+		$this->load->view('index/twenty_head');
 		$this->load->view('index/write_story',$data);		
+		$this->load->view('index/twenty_footer');
 	}
 
 	//---------------------------------------------------------------------------------------------------

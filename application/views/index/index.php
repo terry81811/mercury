@@ -1,29 +1,4 @@
-<!DOCTYPE HTML>
-<!--
-	Twenty 1.0 by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Mercury瓶中信</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="../assets/twenty/js/jquery.min.js"></script>
-		<script src="../assets/twenty/js/jquery.dropotron.min.js"></script>
-		<script src="../assets/twenty/js/skel.min.js"></script>
-		<script src="../assets/twenty/js/skel-layers.min.js"></script>
-		<script src="../assets/twenty/js/init.js"></script>
-		<noscript>
-			<link rel="stylesheet" href="../assets/twenty/css/skel.css" />
-			<link rel="stylesheet" href="../assets/twenty/css/style.css" />
-			<link rel="stylesheet" href="../assets/twenty/css/style-noscript.css" />
-		</noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
-	</head>
+
 	<body class="index loading">
 	
 		<!-- Header -->
@@ -53,8 +28,9 @@
 				-->
 				<div class="inner">
 					
-
-					<img style="width:300px;" src="../assets/img/logo2.png" alt="">
+<header>
+					<img style="max-width:500px;" src="../assets/img/logo3.png" alt="">
+</header>
 					<p>當遠方送來一個搭載故事的漂流瓶<br/>你會認真回覆，還是讓機會隨海浪消失？
 					<footer>
 						<ul class="buttons vertical">
@@ -72,7 +48,7 @@
 				<header class="special container">
 
 
-					<span class="icon fa-envelope"></span>
+					<span class="icon"><img style="max-width:45px;" src="../assets/img/bottle.png" alt=""></span>
 					<h2>每個人都想要擁有一個知心的筆友</h2>
 					<p>厭倦了過於直接的速食交友？<br>或許我們可以先從身邊的朋友開始，透過文字重新認識他們<br>又或者是從生活圈相近但不曾見面的人，同學？同事？朋友的朋友？
 						<br>5/12 - 5/16 <a href="<?php  echo "$fb_login_url"; ?>">寫下你的故事</a>，放入漂流瓶，等待被撿起的那一天</p>
@@ -154,4 +130,3 @@
 	</script>
 
 	</body>
-</html>

@@ -123,27 +123,8 @@ class Api extends CI_Controller
     }
 
     //---------------------------------------------------------------------------------------------------
-    // CRUD APIs - USERS
+    // CRUD APIs - STORIES
     //---------------------------------------------------------------------------------------------------
-
-    public function insert_user($user_data)
-    {
-        $user_id = $this->user_model->insert($user_data);
-        return $user_id;
-    }
-
-
-    public function get_user_byfbid($user_fbid = null)
-    {
-        $user_id = $this->user_model->get(array('user_fbid' => $user_fbid));
-        return $user_id;
-    }
-
-    public function update_user_login_time($user_id = null)
-    {
-        $result = $this->user_model->update(['user_update_time' => date("Y-m-d H:i:s")], $user_id);
-        return $result;
-    }
 
 
 	//---------------------------------------------------------------------------------------------------

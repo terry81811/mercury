@@ -104,6 +104,7 @@
 
 <script>
 
+
 var questions = [
 	"你相信異性間有純友誼嗎？",
 	"你會和好朋友的前男/女朋友交往嗎？",
@@ -126,6 +127,11 @@ var questions = [
 	"有沒有一個心情或情緒是無法跟身邊任何一個人分享的？"
 
 ];
+
+		var item = questions[Math.floor(Math.random()*questions.length)];
+		$("#hidden_story_question").val(item);
+		$("#story_question").text(item);
+
 	$( "#change_question" ).click(function() {
 		var item = questions[Math.floor(Math.random()*questions.length)];
 		$("#hidden_story_question").val(item);

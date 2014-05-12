@@ -62,6 +62,7 @@ class Api extends CI_Controller
                 		'user_name' => $data['user_profile']['name'],
 			            'user_fbid' => $data['user_profile']['id'],
 			            'user_email' => $data['user_profile']['email'],
+                        'user_gender' => $data['user_profile']['gender'],
 			            'user_reg_time' => date("Y-m-d H:i:s"),
 			            'user_update_time' => date("Y-m-d H:i:s")
 			            );

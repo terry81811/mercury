@@ -20,7 +20,13 @@ class Home extends CI_Controller
         if ($this->session->userdata('user_id') == false) {
         	redirect('/');
         }
-        return 1;
+        return $this->session->userdata('user_id');
+    }
+
+    private function _get_user_byid($user_id = null)
+    {
+    	$user = $this->user_model->get($user_id);
+    	return $user;
     }
 
 	//---------------------------------------------------------------------------------------------------
@@ -36,9 +42,9 @@ class Home extends CI_Controller
 
 	public function write_story()
 	{
-		$this->_require_login();
-		$data['user_name'] = '蔡明訓';
-		$data['fb_login_url'] = $this->_fb_login_url();	
+		$user_id = $this->_require_login();
+		$user = $this->_get_user_byid($user_id);
+		$data['user_name'] = $user[0]['user_name'];
 		$this->load->view('index/write_story',$data);		
 	}
 

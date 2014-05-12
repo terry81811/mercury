@@ -105,7 +105,7 @@
 							<div class="4u">
 							
 								<section>
-									<span class="icon feature fa-heart"></span>
+									<span class="icon feature fa-comments"></span>
 									<header>
 										<h3>用文字經營得來不易的友情</h3>
 									</header>

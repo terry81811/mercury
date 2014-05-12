@@ -34,7 +34,7 @@
 						<li class="current"><a href="/">Welcome</a></li>
 
 						<?php
-							
+
 						?>
 
 						<li><a href="<? echo "$fb_login_url"; ?>" class="button special">Sign Up</a></li>
@@ -143,6 +143,12 @@
 
 				<span class="copyright">&copy; Mercury. All rights reserved. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>				
 			</footer>
+
+
+	<script>
+		 vph = $(window).height();
+	    $('#banner').height(vph);
+	</script>
 
 	</body>
 </html>

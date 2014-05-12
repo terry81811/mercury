@@ -33,6 +33,10 @@
 					<ul>
 						<li class="current"><a href="/">Welcome</a></li>
 
+						<?php
+							
+						?>
+
 						<li><a href="<? echo "$fb_login_url"; ?>" class="button special">Sign Up</a></li>
 					</ul>
 				</nav>

@@ -54,6 +54,19 @@
 						<!-- Content -->
 							<div class="content">
 								<form method="post" action="/api/write_story">
+									<div class="row half no-collapse-1">
+										<div class="6u">
+											<input type="text" name="user_school" placeholder="學校" />
+										</div>
+										<div class="6u">
+											<input type="text" name="user_department" placeholder="科系" />
+										</div>
+									</div>
+									<div class="row half">
+										<div class="12u">
+											<input type="text" name="user_nickname" placeholder="我的筆名" />
+										</div>
+									</div>
 
 									<div class="row half">
 										<div class="12u">

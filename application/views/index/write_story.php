@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Mercury漂流瓶</title>
+		<title>Mercury瓶中信</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -28,7 +28,7 @@
 	
 		<!-- Header -->
 			<header id="header">
-				<h1 id="logo"><a href="/">Mercury <span>漂流瓶</span></a></h1>
+				<h1 id="logo"><a href="/">Mercury <span>瓶中信</span></a></h1>
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="/">Welcome <?php echo $user_name;?></a></li>
@@ -44,7 +44,7 @@
 
 				<header class="special container">
 					<span class="icon fa-envelope"></span>
-					<h2>Mercury - 寫下你的故事，飄向遠方</h2>
+					<h2>Mercury - 寫下你的故事，漂向遠方</h2>
 					<p><span id="story_question">你相信異性間有純友誼嗎？</span>
 						<a id="change_question" href="#" style="border:0px;"><i class="fa fa-refresh fa-spin"></a></i></p>
 				</header>
@@ -91,7 +91,7 @@
 			</article>
 
 			<footer id="footer">
-					<p style="font-size:14px;">投出的瓶子，會在5/19-23出現在台大醉月湖邊等待有緣的人<br>而寫下故事的你，將於5/19日以後回到Mercury，等待遠方的回信</p>
+					<p style="font-size:14px;">投出的瓶子，會在5/19-23出現在台大等待有緣的人<br>而寫下故事的你，將於5/19日以後回到Mercury，等待遠方的回信</p>
 					<ul class="buttons">
 						<li><a target="_blank" href="https://www.facebook.com/mercurybottle?fref=ts" class="button special">facebook粉絲頁</a></li>
 						<li><a href="#" class="button">聯絡我們</a></li>

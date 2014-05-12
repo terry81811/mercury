@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Mercury漂流瓶</title>
+		<title>Mercury瓶中信</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -28,7 +28,7 @@
 	
 		<!-- Header -->
 			<header id="header" class="alt">
-				<h1 id="logo"><a href="/">Mercury <span>漂流瓶</span></a></h1>
+				<h1 id="logo"><a href="/">Mercury <span>瓶中信</span></a></h1>
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="/">Welcome <?php echo $user_name;?></a></li>
@@ -59,7 +59,7 @@
 					<p>你的漂流瓶已經隨海浪遠去<br/>5/19日請回到這裡，等待回音
 					<footer>
 					<ul class="buttons">
-						<li><a href="/write_story" class="button special">送出下一個漂流瓶</a></li>
+						<li><a href="/write_story" class="button special">送出下一封瓶中信</a></li>
 						<li><a href="/" class="button">回首頁</a></li>
 					</ul>
 					</footer>

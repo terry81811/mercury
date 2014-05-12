@@ -20,6 +20,7 @@
 				<header class="special container">
 					<span class="icon fa-envelope"></span>
 					<h2>Mercury - 寫下你的故事，漂向遠方</h2>
+					<p style="font-size:14px;">請寫下任何你想寫的話，或是從下面的問題找靈感？</p>
 					<p><span id="story_question">你相信異性間有純友誼嗎？</span>
 						<a id="change_question" href="#" style="border:0px;"><i class="fa fa-refresh fa-spin"></a></i></p>
 				</header>
@@ -72,7 +73,7 @@
 						<li><a href="#" class="button">聯絡我們</a></li>
 					</ul>
 
-				<span class="copyright">&copy; Mercury. All rights reserved. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>				
+				<span class="copyright">&copy; Mercury. All rights reserved. Design: HTML5 UP</span>				
 			</footer>
 
 

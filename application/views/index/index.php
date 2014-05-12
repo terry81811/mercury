@@ -31,7 +31,10 @@
 <header>
 					<img style="max-width:500px;" src="../assets/img/logo3.png" alt="">
 </header>
-					<p>當遠方送來一個搭載故事的漂流瓶<br/>你會認真回覆，還是讓機會隨海浪消失？
+
+
+
+					<p>當遠方送來一個搭載故事的漂流瓶<br/>你會認真回覆，還是讓機會隨海浪消失？</p>
 					<footer>
 						<ul class="buttons vertical">
 							<li><a href="<?php  echo "$fb_login_url"; ?>" class="button fit scrolly">寫下我的故事</a></li>
@@ -49,8 +52,8 @@
 
 
 					<span class="icon"><img style="max-width:45px;" src="../assets/img/bottle.png" alt=""></span>
-					<h2>每個人都想要擁有一個知心的筆友</h2>
-					<p>厭倦了過於直接的速食交友？<br>或許我們可以先從身邊的朋友開始，透過文字重新認識他們<br>又或者是從生活圈相近但不曾見面的人，同學？同事？朋友的朋友？
+					<h2>厭倦了過於直接的速食交友？來交筆友吧</h2>
+					<p>或許我們可以先從身邊的朋友開始，透過文字重新認識他們<br>又或者是從生活圈相近但不曾見面的人，同學？同事？朋友的朋友？
 						<br>5/12 - 5/16 <a href="<?php  echo "$fb_login_url"; ?>">寫下你的故事</a>，放入漂流瓶，等待被撿起的那一天</p>
 				</header>
 
@@ -106,8 +109,23 @@
 			
 				<header>
 					<h2><strong>Mercury</strong>是什麼?</h2>
-					<p>把生活中的小心情，或是人生的小秘密，化成文字、捲成匿名信、放進透明的玻璃瓶<br>讓海浪替你找到共鳴，找到最志同道合的朋友。</p>
-					<p>Mercury瓶中信，收集各種不應沉沒的故事，讓漂流的心情不再寂寞。</p>
+					
+
+							<p style="font-style:italic; font-size:16px; font-weight:300;">“ 據說，有一片Mercury海<br>把你的心事、秘密放入瓶中，投進海裡，就可以收到回信。<br>
+					你不知道信從何而來，也不知道瓶子飄向何處... ”</p>
+
+<p>
+Mercury瓶中信是個有隱私又有驚喜的訊息系統，提供用戶更自在的說出秘密或抒發心情的方式。
+<br>
+把生活中的小心情、小秘密，捲成匿名信、放進透明的玻璃瓶<br>
+讓海浪替你找到共鳴，友誼長存。
+</p>
+<p>
+Mercury瓶中信，收集各種不應沉沒的故事，讓漂流的心情不再寂寞。<br>
+
+更多更有趣的新功能，即將推出，請關注我們<a href="https://www.facebook.com/mercurybottle?fref=ts">粉絲團</a>獲取最新消息</p>
+
+
 				</header>
 
 			
@@ -120,7 +138,8 @@
 						<li><a href="#" class="button">聯絡我們</a></li>
 					</ul>
 
-				<span class="copyright">&copy; Mercury. All rights reserved. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>				
+				<span class="copyright">&copy; Mercury. All rights reserved. Design: HTML5 UP</span>				
+		
 			</footer>
 
 

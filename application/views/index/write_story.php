@@ -63,11 +63,52 @@
 							</div>
 							
 					</section>
-				
+					
+					<!-- Two -->
+					<section class="wrapper style1 container special">
+						<div class="row">
+							<div class="4u">
+							
+								<section>
+									<span class="icon feature fa-pencil"></span>
+									<header>
+										<h3>5/12-16 寫下你的故事</h3>
+									</header>
+									<p>在Mercury網站寫下想說的心事， Mercury會把它變成<strong>實體瓶中信</strong>。寫信不只能抽到實體禮物，還能收到最溫暖的回應。</p>
+								</section>
+							
+							</div>
+							<div class="4u">
+							
+								<section>
+									<span class="icon feature fa-users"></span>
+									<header>
+										<h3>5/19-23 撿起別人的瓶中信</h3>
+									</header>
+									<p>不論妳有沒有寫信，5/19-23
+								來台大撿起別人的故事，再到Mercury網站上輸入瓶子代號，給予瓶子主人溫馨或有趣的回應</p>
+								</section>
+							
+							</div>
+							<div class="4u">
+							
+								<section>
+									<span class="icon feature fa-comments"></span>
+									<header>
+										<h3>用文字經營得來不易的友情</h3>
+									</header>
+									<p>瓶子的主人5/19後將可以在Mercury網站上挑出最感動的那一則，互相成為新朋友。Mercury瓶中信將是長久友誼的第一步！</p>
+								</section>
+							
+							</div>
+						</div>
+					</section>
+					
 			</article>
 
 			<footer id="footer">
-					<p style="font-size:14px;">投出的瓶子，會在5/19-23出現在台大等待有緣的人<br>而寫下故事的你，將於5/19日以後回到Mercury，等待遠方的回信</p>
+							<p style="font-style:italic; font-size:16px; font-weight:300;">“ 據說，有一片Mercury海<br>把你的心事、秘密放入瓶中，投進海裡，就可以收到回信。<br>
+					你不知道信從何而來，也不知道瓶子飄向何處... ”</p>
 					<ul class="buttons">
 						<li><a target="_blank" href="https://www.facebook.com/mercurybottle?fref=ts" class="button special">facebook粉絲頁</a></li>
 						<li><a href="#" class="button">聯絡我們</a></li>

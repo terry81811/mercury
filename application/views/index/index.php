@@ -113,7 +113,7 @@
 
 							<p style="font-style:italic; font-size:16px; font-weight:300;">“ 據說，有一片Mercury海<br>把你的心事、秘密放入瓶中，投進海裡，就可以收到回信。<br>
 					你不知道信從何而來，也不知道瓶子飄向何處... ”</p>
-
+<hr>
 <p>
 Mercury瓶中信是個有隱私又有驚喜的訊息系統，提供用戶更自在的說出秘密或抒發心情的方式。
 <br>

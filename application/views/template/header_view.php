@@ -33,4 +33,3 @@
     <![endif]-->
   </head>
   <body>
-        <a href="" class="button btn-primary btn-xs" target="_blank" id="facebookTag"><i class="facebook icon small"></i>Facebook</a>

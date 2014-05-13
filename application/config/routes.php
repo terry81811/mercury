@@ -37,6 +37,9 @@
 | in the URL cannot be matched to a valid route.
 |
 */
+$route['admin_api/(:any)'] = 'admin_api/$1';
+$route['admin_api'] = 'admin_api/index';
+
 $route['api/(:any)'] = 'api/$1';
 $route['api'] = 'api/index';
 

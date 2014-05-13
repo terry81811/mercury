@@ -38,19 +38,30 @@ class Home extends CI_Controller
 
 	public function index()
 	{
-		$data['fb_login_url'] = $this->_fb_login_url();	
-
         if ($this->session->userdata('user_id') == false) {
+//        if ($this->session->userdata('user_id') == 'test') {
+
+			$data['fb_login_url'] = $this->_fb_login_url();	
 			$data['login_logout_url'] = $this->_fb_login_url();	
 			$data['login_logout_text'] = 'Sign Up';	
+
+			$this->load->view('index/twenty_head');
+			$this->load->view('index/index',$data);
+			$this->load->view('index/twenty_footer');
+
         }else{
+//			$data['fb_login_url'] = $this->_fb_login_url();	
+			$data['fb_login_url'] = $this->_fb_login_url();	
 			$data['login_logout_url'] = '/api/logout';	
         	$data['login_logout_text'] = 'Sign Out';	
+
+			$this->load->view('index/twenty_head');
+			$this->load->view('index/index',$data);
+			$this->load->view('index/twenty_footer');
         }
-		$this->load->view('index/twenty_head');
-		$this->load->view('index/index',$data);
-		$this->load->view('index/twenty_footer');
 	}
+
+
 
 	public function story_sent()
 	{
@@ -77,6 +88,18 @@ class Home extends CI_Controller
 		$this->load->view('index/twenty_footer');
 	}
 
+
+	public function my_story()
+	{
+		$user_id = $this->_require_login();
+		$user = $this->_get_user_byid($user_id);
+		$data['user_name'] = $user[0]['user_name'];
+
+
+		$this->load->view('index/twenty_head');
+		$this->load->view('index/write_story',$data);		
+		$this->load->view('index/twenty_footer');
+	}
 	//---------------------------------------------------------------------------------------------------
 	
 	public function page()
@@ -160,6 +183,51 @@ class Home extends CI_Controller
 	}
 
 
+	//---------------------------------------------------------------------------------------------------
+	//	Internal pages
+	//---------------------------------------------------------------------------------------------------
+
+    private function _admin_require_login()
+    {
+        if ($this->session->userdata('mercury_admin_login') == 0) {
+        	redirect('/mercury_db_login');
+        }
+        else{
+	        return 1;
+        }
+    }
+
+	public function mercury_db_login()
+	{
+		if($this->session->userdata('mercury_admin_login') == 1){
+			redirect('mercury_db');
+		}
+		else{
+			$this->load->view('admin/header');
+			$this->load->view('admin/login');
+			$this->load->view('admin/footer');
+		}
+	}
+
+	public function mercury_db()
+	{
+		$this->_admin_require_login();
+
+		$male = $this->user_model->get(array('user_gender' => 'male'));
+		$female = $this->user_model->get(array('user_gender' => 'female'));
+
+		$users = $this->user_model->get();
+		usort($users, function($a, $b) {
+		    return $b['user_login_count'] - $a['user_login_count'];
+		});
+
+		$data['users'] = $users;
+		$data['male_count'] = sizeof($male);
+		$data['female_count'] = sizeof($female);
+		$this->load->view('admin/header');
+		$this->load->view('admin/mercury_db',$data);
+		$this->load->view('admin/footer');
+	}
 
 
 	//---------------------------------------------------------------------------------------------------

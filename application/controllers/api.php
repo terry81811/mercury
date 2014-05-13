@@ -53,6 +53,7 @@ class Api extends CI_Controller
 			        $this->session->set_userdata('user_id', $is_old[0]['user_id']);             
 			        $this->session->set_userdata('user_fbid', $is_old[0]['user_fbid']);
 			        $this->update_user_login_time($user_id);
+                    $this->update_user_login_count($user_id);
 			        redirect('/write_story');
                 }
                 else
@@ -121,6 +122,13 @@ class Api extends CI_Controller
     	return $result;
     }
 
+    public function update_user_login_count($user_id = null)
+    {
+        $user = $this->user_model->get($user_id);
+        $user_login_count = $user[0]['user_login_count'];
+        $result = $this->user_model->update(['user_login_count' => $user_login_count +1 ], $user_id);
+        return $result;
+    }
 
     //---------------------------------------------------------------------------------------------------
     // CRUD APIs - STORIES

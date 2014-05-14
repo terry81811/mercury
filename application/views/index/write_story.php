@@ -21,7 +21,7 @@
 					<span class="icon fa-envelope"></span>
 					<h2>Mercury - 寫下你的故事，漂向遠方</h2>
 					<p style="font-size:14px;">請寫下任何你想寫的話，或是從下面的問題找靈感？</p>
-					<p><span id="story_question">你相信異性間有純友誼嗎？</span>
+					<p><span id="story_question" style="font-size:14px;font-style:italic;"></span>
 						<a id="change_question" href="#" style="border:0px;"><i class="fa fa-refresh fa-spin"></a></i></p>
 				</header>
 					
@@ -123,36 +123,19 @@
 
 
 var questions = [
-	"你相信異性間有純友誼嗎？",
-	"你會和好朋友的前男/女朋友交往嗎？",
-	"小說，還是電影更會讓你沉迷？",
-	"對你來說，筆友是什麼？",
-	"你從別人口中得知最好的朋友一直以來都默默喜歡你，你會...？",
-	"單身是因為不夠勇敢不夠積極嗎？",
-	"曖昧的感覺是什麼？你喜歡嗎？",
-	"你想收到什麼禮物？",
-	"最近做了什麼夢？",
-	"對你來說，什麼是溫柔體貼？",
-	"最喜歡的一首歌？背後有什麼故事？",
-	"喜歡一個人去旅行還是結伴同遊呢？",
-	"人生最奇怪的夢想是什麼？",
-	"最近有看什麼電影嗎？有什麼心得？",
-	"跟遠方的朋友分享一本最近看的好書吧",
-	"每一次旅行，都是一個不同的故事。你有沒有最深刻的旅行經驗想要分享？",
-	"你發生過最糗的事是？",
-	"每次好朋友生日都要精心設計。有沒有特別自豪、想與人分享的整人驚喜呢？",
-	"有沒有一個心情或情緒是無法跟身邊任何一個人分享的？"
-
-];
+	"<br>有人說，「攝影就是捕捉生活裡的感動及想法<br>文字則是補充影像無法描述的情感」<br>有人則說，「攝影就像是將時間軸凝結成一個點<br>文字則是將一個時間點拉成一個軸」<br><br>你怎麼說呢？攝影和文字對於你又有什麼樣的想法與看法？",
+	"<br>給你我所能給的，並且等待你的拒絕<br>流淚，是我想你時唯一的自由<br>———劇作《臺北詩人》<br><br>好像曾經有這麼樣一個人，是放在你內心深處的，<br>很愛，卻不得不放手，那一種灌注生命的愛。 <br>有人這樣說：忘記一個人最好的方法，就是將他變成文字。<br><br>寫下那一段你刻骨銘心的感情吧，也許可以在瓶中信內找到共鳴，而更勇敢的往前進。",
+	"<br>「 I thought our relationship was perfectly clear. <br>You are an escape. You're a break from our normal lives. 」<br>型男飛行日記裡，艾克絲對雷恩說。<br><br>也許生活中曾經有那麼一個人，你知道你們不會在一起，你知道你們不可能在一起。<br>你們彼此間的關係就是純粹的愛而已，那樣不加入雜質的愛，彼此是對方的精神支柱，<br>就因為不會在一起，就因為不會註定要離開，所以可以永遠保持著這樣的關係，曖昧卻純粹，所以更是彼此內心的escape。<br><br>你有沒有那樣一位對象，雖然沒有在一起，可是卻在你的心中佔了一個很重要的地位？"
+	];
 
 		var item = questions[Math.floor(Math.random()*questions.length)];
 		$("#hidden_story_question").val(item);
-		$("#story_question").text(item);
+		$("#story_question").html(item);
 
 	$( "#change_question" ).click(function() {
 		var item = questions[Math.floor(Math.random()*questions.length)];
 		$("#hidden_story_question").val(item);
-		$("#story_question").text(item);
+		$("#story_question").html(item);
 	});
 
 	$( "#story_send_btn" ).click(function() {

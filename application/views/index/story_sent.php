@@ -31,7 +31,7 @@
 					<header>
 						<h2>Mercury</h2>
 					</header>
-					<p>你的漂流瓶已經隨海浪遠去<br/>5/19日請回到這裡，等待回音
+					<p>你的漂流瓶已經隨海浪遠去<br/>5/26日請回到這裡，等待回音
 					<footer>
 					<ul class="buttons">
 						<li><a href="/write_story" class="button special">送出下一封瓶中信</a></li>

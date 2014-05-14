@@ -46,15 +46,21 @@ class Home extends CI_Controller
 			$data['login_logout_url'] = $this->_fb_login_url();	
 			$data['login_logout_text'] = 'Sign Up';	
 
+			$users = $this->user_model->get();
+			$data['users_count'] = sizeof($users);	
+
 			$this->load->view('index/twenty_head');
 			$this->load->view('index/index',$data);
 			$this->load->view('index/twenty_footer');
 
         }else{
-//			$data['fb_login_url'] = $this->_fb_login_url();	
+//			$data['fb_login_url'] = $this->_fb_login_url();
 			$data['fb_login_url'] = $this->_fb_login_url();	
 			$data['login_logout_url'] = '/api/logout';	
         	$data['login_logout_text'] = 'Sign Out';	
+        	
+			$users = $this->user_model->get();
+			$data['users_count'] = sizeof($users);	
 
 			$this->load->view('index/twenty_head');
 			$this->load->view('index/index',$data);

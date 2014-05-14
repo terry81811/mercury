@@ -6,6 +6,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('story_model');
     }
 
     private function _fb_login_url()
@@ -228,6 +229,30 @@ class Home extends CI_Controller
 		$this->load->view('admin/mercury_db',$data);
 		$this->load->view('admin/footer');
 	}
+
+	public function mercury_db_story()
+	{
+		$this->_admin_require_login();
+
+		$male = $this->user_model->get(array('user_gender' => 'male'));
+		$female = $this->user_model->get(array('user_gender' => 'female'));
+
+		$stories = $this->story_model->get();
+
+		foreach ($stories as $_key => $story) {
+			$story_writer = $this->user_model->get($story['story_user_id']);
+			$stories[$_key]['story_writer'] = $story_writer[0]['user_name'];
+			$stories[$_key]['story_writer_nickname'] = $story_writer[0]['user_nickname'];
+		}
+
+		$data['stories'] = $stories;
+		$data['male_count'] = sizeof($male);
+		$data['female_count'] = sizeof($female);
+		$this->load->view('admin/header');
+		$this->load->view('admin/mercury_db_story',$data);
+		$this->load->view('admin/footer');
+	}
+
 
 
 	//---------------------------------------------------------------------------------------------------

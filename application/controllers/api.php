@@ -23,6 +23,18 @@ class Api extends CI_Controller
         return $this->session->userdata('user_id');
     }
 
+    private function _require_register()
+    {
+        $user_id = $this->_require_login();
+        $user = $this->user_model->get($user_id);
+
+        if($user[0]['user_nickname'] == false){
+            redirect('/register');
+        }
+
+        return 0;
+    }
+
 	//---------------------------------------------------------------------------------------------------
 
 
@@ -30,7 +42,14 @@ class Api extends CI_Controller
 	{
 
 			if($this->session->userdata('user_id')){
-				redirect('/write_story');
+                $user_id = $this->session->userdata('user_id');
+                $user = $this->user_model->get($user_id);
+                if($user[0]['user_nickname'] == false){
+                    redirect('/register');
+                }
+                else{
+                    redirect('/write_story');
+                }
 			}
 
 		//query fb user
@@ -130,6 +149,30 @@ class Api extends CI_Controller
         return $result;
     }
 
+    public function register()
+    {
+        $user_id = $this->_require_login();
+
+        $post_data = $this->input->post(NULL, TRUE);
+
+        $user_email = $post_data['user_email'];        
+        $user_school = $post_data['user_school'];
+        $user_department = $post_data['user_department'];
+        $user_nickname = $post_data['user_nickname'];
+
+        $user_data = array(
+            'user_email' => $user_email,
+            'user_school' => $user_school,
+            'user_department' => $user_department,
+            'user_nickname' => $user_nickname,
+            'user_update_time' => date("Y-m-d H:i:s")
+            );
+
+        $result = $this->user_model->update($user_data, $user_id);
+        redirect('/write_story');
+
+    }
+
     //---------------------------------------------------------------------------------------------------
     // CRUD APIs - STORIES
     //---------------------------------------------------------------------------------------------------
@@ -143,17 +186,11 @@ class Api extends CI_Controller
     public function write_story()
     {
         $user_id = $this->_require_login();
+        $this->_require_register();
 
         $post_data = $this->input->post(NULL, TRUE);
 
-        $user_school = $post_data['user_school'];
-        $user_department = $post_data['user_department'];
-        $user_nickname = $post_data['user_nickname'];
-
         $user_data = array(
-            'user_school' => $user_school,
-            'user_department' => $user_department,
-            'user_nickname' => $user_nickname,
             'user_update_time' => date("Y-m-d H:i:s")
             );
 
@@ -195,18 +232,5 @@ class Api extends CI_Controller
 
 
 	//---------------------------------------------------------------------------------------------------
-
-	public function register()
-	{
-
-		if($this->_require_login() != 0){		
-
-			echo $this->_fb_login_url();
-			$this->load->view('template/header_view_general');
-			$this->load->view('home/public_sea_view');
-			$this->load->view('template/footer_view');
-
-		}
-	}
 
 }

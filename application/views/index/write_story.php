@@ -38,21 +38,9 @@
 											<textarea name="story_content" placeholder="給撿到瓶子的你，我..." rows="7"></textarea>
 										</div>
 									</div>
-									<div class="row half no-collapse-1">
-										<div class="4u">
-											<input type="text" name="user_school" placeholder="學校" />
-										</div>
-										<div class="4u">
-											<input type="text" name="user_department" placeholder="科系" />
-										</div>
-										<div class="4u">
-											<input type="text" name="user_nickname" placeholder="我的筆名" />
-										</div>
-									</div>
 
 									<div class="row">
 										<div class="12u">
-											<p style="font-size:14px;">除了校系、筆名外我們不會透漏您的任何資訊<br>提醒您：越真摯的內容，越有機會讓撿到瓶子的人感動而回信</p>											
 											<ul class="buttons">
 												<li><a id="story_send_btn" href="#" class="button special">送出漂流瓶</a></li>
 											</ul>

@@ -28,8 +28,8 @@
 				-->
 				<div class="inner">
 					
-					<header>
-						<h2>Mercury</h2>
+					<header style="max-width:500px;">
+										<img style="max-width:100%; margin: 0 auto;" src="../assets/img/logo3.png" alt="">
 					</header>
 					<p>你的漂流瓶已經隨海浪遠去<br/>5/26日請回到這裡，等待回音
 					<footer>

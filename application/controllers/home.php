@@ -27,6 +27,18 @@ class Home extends CI_Controller
         return $this->session->userdata('user_id');
     }
 
+    private function _require_register()
+    {
+        $user_id = $this->_require_login();
+        $user = $this->user_model->get($user_id);
+
+        if($user[0]['user_nickname'] == false){
+            redirect('/register');
+        }
+
+        return 0;
+    }
+
     private function _get_user_byid($user_id = null)
     {
     	$user = $this->user_model->get($user_id);
@@ -73,6 +85,8 @@ class Home extends CI_Controller
 	public function story_sent()
 	{
 		$user_id = $this->_require_login();
+        $this->_require_register();
+
 		$user = $this->_get_user_byid($user_id);
 
 		$data['user_name'] = $user[0]['user_name'];
@@ -86,6 +100,8 @@ class Home extends CI_Controller
 	public function write_story()
 	{
 		$user_id = $this->_require_login();
+        $this->_require_register();
+
 		$user = $this->_get_user_byid($user_id);
 		$data['user_name'] = $user[0]['user_name'];
 
@@ -107,6 +123,24 @@ class Home extends CI_Controller
 		$this->load->view('index/write_story',$data);		
 		$this->load->view('index/twenty_footer');
 	}
+
+	public function register()
+	{
+		$user_id = $this->_require_login();
+		$user = $this->_get_user_byid($user_id);
+
+        if($user[0]['user_nickname'] == true){
+            redirect('/');
+        }
+
+		$data['user_name'] = $user[0]['user_name'];
+
+
+		$this->load->view('index/twenty_head');
+		$this->load->view('index/register',$data);		
+		$this->load->view('index/twenty_footer');
+	}
+
 	//---------------------------------------------------------------------------------------------------
 	
 	public function page()
@@ -263,13 +297,6 @@ class Home extends CI_Controller
 
 	//---------------------------------------------------------------------------------------------------
 
-
-	public function register()
-	{
-		$this->load->view('home/inc/header_view');
-		$this->load->view('home/register_view');
-		$this->load->view('home/inc/footer_view');
-	}
 
 
 	//---------------------------------------------------------------------------------------------------

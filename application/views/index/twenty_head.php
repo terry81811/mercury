@@ -25,6 +25,9 @@
 			<link rel="stylesheet" href="../assets/twenty/css/style.css" />
 			<link rel="stylesheet" href="../assets/twenty/css/style-noscript.css" />
 		</noscript>
+
+		<link rel="stylesheet" href="../assets/twenty/css/stylesheet_terry.css" />
+
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
 	</head>

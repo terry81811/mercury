@@ -6,7 +6,7 @@
 				<h1 id="logo"><a href="/">Mercury <span>瓶中信</span></a></h1>
 				<nav id="nav">
 					<ul>
-						<li class="current"><a href="/">Welcome</a></li>
+						<li class="current"><a href="/">Welcome <?php echo $user_name;?></a></li>
 
 						<?php
 
@@ -37,8 +37,8 @@
 					<p>當遠方送來一個搭載故事的漂流瓶<br/>你會認真回覆，還是讓機會隨海浪消失？</p>
 					<footer>
 						<ul class="buttons vertical">
-							<li><a href="/write_story" class="button fit scrolly">寫下我的故事</a></li>
-							<li><a href="/my_story" class="button special fit scrolly">屬於我的故事</a></li>
+							<li><a href="/write_story" class="button special fit scrolly">寫下我的故事</a></li>
+							<li><a href="/my_story" class="button fit scrolly">屬於我的故事</a></li>
 						</ul>
 					</footer>
 				

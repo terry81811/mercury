@@ -52,8 +52,6 @@ class Home extends CI_Controller
 	public function index()
 	{
         if ($this->session->userdata('user_id') == false) {
-//        if ($this->session->userdata('user_id') == 'test') {
-
 			$data['fb_login_url'] = $this->_fb_login_url();	
 			$data['login_logout_url'] = $this->_fb_login_url();	
 			$data['login_logout_text'] = 'Sign Up';	
@@ -66,7 +64,12 @@ class Home extends CI_Controller
 			$this->load->view('index/twenty_footer');
 
         }else{
-//			$data['fb_login_url'] = $this->_fb_login_url();
+
+			$user_id = $this->_require_login();
+	        $this->_require_register();
+			$user = $this->_get_user_byid($user_id);
+			$data['user_name'] = $user[0]['user_name'];
+
 			$data['fb_login_url'] = $this->_fb_login_url();	
 			$data['login_logout_url'] = '/api/logout';	
         	$data['login_logout_text'] = 'Sign Out';	
@@ -75,11 +78,10 @@ class Home extends CI_Controller
 			$data['users_count'] = sizeof($users);	
 
 			$this->load->view('index/twenty_head');
-			$this->load->view('index/index',$data);
+			$this->load->view('index/index_login',$data);
 			$this->load->view('index/twenty_footer');
         }
 	}
-
 
 
 	public function story_sent()
@@ -117,10 +119,13 @@ class Home extends CI_Controller
 		$user_id = $this->_require_login();
 		$user = $this->_get_user_byid($user_id);
 		$data['user_name'] = $user[0]['user_name'];
+		$data['user_nickname'] = $user[0]['user_nickname'];
 
+		$stories = $this->story_model->get(array('story_user_id' => $user_id));
 
+		$data['stories'] = $stories;
 		$this->load->view('index/twenty_head');
-		$this->load->view('index/write_story',$data);		
+		$this->load->view('index/my_story',$data);		
 		$this->load->view('index/twenty_footer');
 	}
 

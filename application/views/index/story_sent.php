@@ -35,7 +35,7 @@
 					<footer>
 					<ul class="buttons">
 						<li><a href="/write_story" class="button special">送出下一封瓶中信</a></li>
-						<li><a href="/" class="button">回首頁</a></li>
+						<li><a href="/my_story" class="button">看我的故事</a></li>
 					</ul>
 					</footer>
 				

@@ -298,6 +298,14 @@ class Home extends CI_Controller
 		$this->load->view('admin/footer');
 	}
 
+	public function mercury_mail()
+	{
+		$this->_admin_require_login();
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/mercury_mail');
+		$this->load->view('admin/footer');
+	}
 
 
 	//---------------------------------------------------------------------------------------------------

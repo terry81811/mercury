@@ -13,7 +13,9 @@ class Api extends CI_Controller
         $this->load->library('curl');
     }
 
-	//---------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------
+    // private validattion
+    //---------------------------------------------------------------------------------------------------
 
     private function _require_login()
     {
@@ -35,7 +37,19 @@ class Api extends CI_Controller
         return 0;
     }
 
-	//---------------------------------------------------------------------------------------------------
+    private function _admin_require_login()
+    {
+        if ($this->session->userdata('mercury_admin_login') == 0) {
+            redirect('/mercury_db_login');
+        }
+        else{
+            return 1;
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------------
+    // LOGIN/LOGOUT
+    //---------------------------------------------------------------------------------------------------
 
 
 	public function login()
@@ -216,6 +230,76 @@ class Api extends CI_Controller
 
         redirect('/story_sent');
     }
+
+    //---------------------------------------------------------------------------------------------------
+    // EMAIL
+    //---------------------------------------------------------------------------------------------------
+
+    public function email_api()
+    {
+        $this->_admin_require_login();
+        $post_data = $this->input->post(NULL, TRUE);
+
+        print_r($post_data);
+
+        $email_type = $post_data['email_type']; 
+        
+        if($email_type == 'all'){
+            $users = $this->user_model->get();
+            foreach ($users as $_key => $user) {
+                $email_to[] = $user['user_email'];
+            }
+
+        }else if($email_type == 'active-user'){
+
+        }else if($email_type == 'inactive-user'){
+
+        }else if($email_type == 'self-def'){
+            $email_to = explode(",", $post_data['email_to']);
+        }
+
+//        print_r($email_to);
+
+        $email_subject = $post_data['email_subject'];
+        
+        $email_message = $post_data['email_message'];
+        $email_message = "<p>".$email_message."</p>";
+
+        $this->send_email($email_subject,$email_message,$email_to);
+    }
+
+    private function send_email($email_subject = NULL, $email_message = NULL, $email_to = NULL)
+    {
+        $this->load->library('email');
+
+            $email_message = "<h4>Dear Mercury瓶中信用戶</h4>".$email_message."<h4>best regards,<br>Mercury團隊 敬上</h4>";
+
+            $this->email->from('service.mercury.so@gmail.com', 'Mercury瓶中信');
+            $this->email->subject($email_subject);
+            $this->email->message($email_message); 
+
+            foreach ($email_to as $_key => $_receiver) {
+                $this->email->to($_receiver); 
+                $this->email->send();
+            }
+    }
+
+
+    public function email_test($order_id)
+    {
+        $this->confirm_email($order_id,1,1,'terrytsai0811@gmail.com');
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 	//---------------------------------------------------------------------------------------------------

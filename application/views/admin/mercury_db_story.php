@@ -1,5 +1,5 @@
 	<div class="well">
-		<p style="text-align:right"><a href="/mercury_db">使用者</a> ｜ <a href="/admin_api/admin_logout">登出</a></p>
+		<p style="text-align:right"><a href="/mercury_mail">寄信</a> ｜ <a href="/mercury_db">使用者</a> ｜ <a href="/admin_api/admin_logout">登出</a></p>
 		<h1>Mercury後台，請勿將網址給團隊外部人士</h1>
 
 	</div>

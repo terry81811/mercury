@@ -110,6 +110,7 @@ class Home extends CI_Controller
 
 		$this->load->view('index/twenty_head');
 		$this->load->view('index/write_story',$data);		
+		$this->load->view('index/write_storyjs');
 		$this->load->view('index/twenty_footer');
 	}
 

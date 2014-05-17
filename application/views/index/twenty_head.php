@@ -17,6 +17,8 @@
 		<script src="../assets/twenty/js/skel-layers.min.js"></script>
 		<script src="../assets/twenty/js/init.js"></script>
 
+		<script src="/assets/js/alertify/alertify.min.js"></script>
+
 		<link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
 		
@@ -25,6 +27,9 @@
 			<link rel="stylesheet" href="../assets/twenty/css/style.css" />
 			<link rel="stylesheet" href="../assets/twenty/css/style-noscript.css" />
 		</noscript>
+	
+	    <link rel="stylesheet" href="../assets/css/alertify/alertify.core.css" />
+	    <link rel="stylesheet" href="../assets/css/alertify/alertify.default.css" id="toggleCSS" />
 
 		<link rel="stylesheet" href="../assets/twenty/css/stylesheet_terry.css" />
 

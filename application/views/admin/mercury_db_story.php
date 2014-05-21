@@ -12,7 +12,6 @@
 
 	    <table class="table table-condensed" style="margin-bottom:0px;">
 		<tr>
-			<td width='5%'>發信人</td>
 			<td width='5%'>筆名</td>
 			<td width='15%'>主旨</td>
 			<td width='20%'>內容</td>
@@ -23,7 +22,6 @@
 	    			<?php
 						foreach ($stories as $_key => $story) {
 							echo "<tr>";
-							echo "<td>".$story['story_writer']."</td>";
 							echo "<td>".$story['story_writer_nickname']."</td>";
 							echo "<td>".$story['story_subject']."</td>";
 							echo "<td>".$story['story_content']."</td>";

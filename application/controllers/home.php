@@ -147,6 +147,32 @@ class Home extends CI_Controller
 		$this->load->view('index/twenty_footer');
 	}
 
+
+	//---------------------------------------------------------------------------------------------------
+	//	SECOND Campaign
+	//---------------------------------------------------------------------------------------------------
+
+	public function test()
+	{
+		$user_id = $this->_require_login();
+        $this->_require_register();
+
+		$user = $this->_get_user_byid($user_id);
+		$data['user_name'] = $user[0]['user_name'];
+		
+			$users = $this->user_model->get();
+			$data['users_count'] = sizeof($users);	
+
+			$data['fb_login_url'] = $this->_fb_login_url();	
+			$data['login_logout_url'] = '/api/logout';	
+        	$data['login_logout_text'] = 'Sign Out';	
+
+		$this->load->view('index/twenty_head');
+		$this->load->view('index/test',$data);		
+		$this->load->view('index/twenty_footer');
+	}
+
+
 	//---------------------------------------------------------------------------------------------------
 	
 	public function page()

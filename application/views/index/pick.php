@@ -7,7 +7,15 @@
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="/">Welcome <?php echo $user_name;?></a></li>
-
+						<li class="submenu">
+							<a href="">我的Mercury</a>
+							<ul>
+								<li><a href="/write_story">寫故事</a></li>
+								<li><a href="/pick">撿瓶子</a></li>
+								<li><a href="/my_story">屬於我的故事</a></li>
+								<li><a href="/bottles">我撿過的瓶子</a></li>
+							</ul>
+						</li>
 
 
 						<li><a href="<? echo "$login_logout_url"; ?>" class="button special"><?php echo $login_logout_text;?> </a></li>
@@ -18,42 +26,59 @@
 		<!-- Banner -->		
 			<section id="banner">
 				
-				<!--
-					".inner" is set up as an inline-block so it automatically expands
-					in both directions to fit whatever's inside it. This means it won't
-					automatically wrap lines, so be sure to use line breaks where
-					appropriate (<br />).
-				-->
-				<div class="inner">
-					
-<header>
-					<img style="max-width:500px;" src="../assets/img/logo3.png" alt="">
-</header>
+				<header class="special container">
+							<p style="font-style:italic; font-size:16px; font-weight:300;">“ 據說，有一片Mercury海<br>把你的心事、秘密放入瓶中，投進海裡，就可以收到回信。<br>
+					你不知道信從何而來，也不知道瓶子飄向何處... ”</p>
+				</header>
+						<!-- Content -->
+							<div class="content wrapper style1 special container small">
 
 
+									<div class="row half">
+										<div class="6u">
+											<section>
+												<a href="pick_today"><span style="color:white;" class="icon fa-5x fa-envelope"></span></a>
+												<header>
+													<h3><a href="pick_today">撿取今日的瓶中信</a></h3>
+												</header>
+												<p>過了今天，你將再也沒有機會撿到同樣的故事<br></p>
+												
+											</section>
+										</div>
+										<div class="6u">
+											<section>
+												<a href="enter_code"><span style="color:white;" class="icon fa-5x fa-bars"></span></a>
+												<header>
+													<h3><a href="#" id="enter_code">輸入實體漂流瓶代碼</a></h3>
+												</header>
+														<form action="/api/enter_code" method="post">
+														    <div class="input-group" style="width:70%;margin:auto auto;">
+														      <input style="background-color:rgba(255,255,255,0.8);color:black" type="text" class="form-control" name="code" placeholde="請輸入code">
+														      <span class="input-group-btn">
+														        <button class="btn btn-default" type="submit"><span style="" class="icon fa-envelope"></span></button>
+														      </span>
+														    </div><!-- /input-group -->
+														</form>
+															<p style="font-size:13px; font-weight:300;">請輸入5/26-30在台大實體瓶中信活動中的信件代碼<br></p>
+											</section>
+										</div>
+									</div>
 
-					<p>當遠方送來一個搭載故事的漂流瓶<br/>你會認真回覆，還是讓機會隨海浪消失？</p>
-					<footer>
-						<ul class="buttons vertical">
-							<li><a href="/write_story" class="button special fit scrolly">寫下我的故事</a></li>
-							<li><a href="/my_story" class="button fit scrolly">屬於我的故事</a></li>
-						</ul>
-					</footer>
-				
-				</div>
+
+							</div>
 				
 			</section>
 		
 		<!-- Main -->
 			<article id="main">
 
-				<header class="special container">
+				<header class="special container" style="padding-top:0px;">
 
 
-					<span class="icon"><img style="max-width:45px;" src="../assets/img/bottle.png" alt=""></span>
+					<img style="max-width:45px;" src="../assets/img/bottle.png" alt="">
 					<h2>厭倦了過於直接的速食交友？來交筆友吧</h2>
 					<p>或許我們可以先從身邊的朋友開始，透過文字重新認識他們<br>又或者是從生活圈相近但不曾見面的人，同學？同事？朋友的朋友？
-						<br>5/12 - 5/23 <a href="/write_story">寫下你的故事</a>，放入漂流瓶，等待被撿起的那一天</p>
+						<br>5/12 - 5/23 <a href="<?php  echo "$fb_login_url"; ?>">寫下你的故事</a>，放入漂流瓶，等待被撿起的那一天</p>
 				</header>
 
 				<!-- Two -->
@@ -95,7 +120,7 @@
 							</div>
 						</div>
 							<ul class="buttons">
-								<li><a href="/write_story" class="button">寫下我的故事</a></li>
+								<li><a href="<?php  echo "$fb_login_url"; ?>" class="button">寫下我的故事</a></li>
 							</ul>
 					</section>
 					
@@ -103,32 +128,6 @@
 					
 			</article>
 
-		<!-- CTA -->
-			<section id="cta">
-			
-				<header>
-					<h2><strong>Mercury</strong>是什麼?</h2>
-					
-
-							<p style="font-style:italic; font-size:16px; font-weight:300;">“ 據說，有一片Mercury海<br>把你的心事、秘密放入瓶中，投進海裡，就可以收到回信。<br>
-					你不知道信從何而來，也不知道瓶子飄向何處... ”</p>
-<hr>
-<p>
-Mercury瓶中信是個有隱私又有驚喜的訊息系統，提供用戶更自在的說出秘密或抒發心情的方式。
-<br>
-把生活中的小心情、小秘密，捲成匿名信、放進透明的玻璃瓶<br>
-讓海浪替你找到共鳴，友誼長存。
-</p>
-<p>
-Mercury瓶中信，收集各種不應沉沒的故事，讓漂流的心情不再寂寞。<br>
-
-更多更有趣的新功能，即將推出，請關注我們<a href="https://www.facebook.com/mercurybottle?fref=ts">粉絲團</a>獲取最新消息</p>
-
-
-				</header>
-
-			
-			</section>
 
 		<!-- Footer -->
 			<footer id="footer">

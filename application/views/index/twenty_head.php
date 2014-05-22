@@ -10,6 +10,11 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
+
+
+		<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.input.css" />
+
+
 		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
 		<script src="../assets/twenty/js/jquery.min.js"></script>
 		<script src="../assets/twenty/js/jquery.dropotron.min.js"></script>

@@ -7,6 +7,7 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('story_model');
+        $this->load->model('pick_model');
     }
 
     private function _fb_login_url()
@@ -35,7 +36,6 @@ class Home extends CI_Controller
         if($user[0]['user_nickname'] == false){
             redirect('/register');
         }
-
         return 0;
     }
 
@@ -43,6 +43,19 @@ class Home extends CI_Controller
     {
     	$user = $this->user_model->get($user_id);
     	return $user;
+    }
+
+    private function _is_user_bottle($story_id = null)
+    {
+    	if($story_id){
+	    	$user_id = $this->_require_login();
+	    	$is_user_bottle = $this->pick_model->get(array('pick_story_id' => $story_id, 'pick_picker_id' => $user_id));
+	    	if(sizeof($is_user_bottle) == 0){
+	    		return 0;
+	    	}else{
+	    		return 1;
+	    	}
+    	}
     }
 
 	//---------------------------------------------------------------------------------------------------
@@ -159,7 +172,7 @@ class Home extends CI_Controller
 
 		$user = $this->_get_user_byid($user_id);
 		$data['user_name'] = $user[0]['user_name'];
-		
+
 			$users = $this->user_model->get();
 			$data['users_count'] = sizeof($users);	
 
@@ -170,6 +183,64 @@ class Home extends CI_Controller
 		$this->load->view('index/twenty_head');
 		$this->load->view('index/test',$data);		
 		$this->load->view('index/twenty_footer');
+	}
+
+	public function pick()
+	{
+		$user_id = $this->_require_login();
+        $this->_require_register();
+
+		$user = $this->_get_user_byid($user_id);
+		$data['user_name'] = $user[0]['user_name'];
+		
+			$users = $this->user_model->get();
+			$data['users_count'] = sizeof($users);	
+
+			$data['fb_login_url'] = $this->_fb_login_url();	
+			$data['login_logout_url'] = '/api/logout';	
+        	$data['login_logout_text'] = 'Sign Out';	
+
+		$this->load->view('index/twenty_head');
+		$this->load->view('index/pick',$data);		
+		$this->load->view('index/twenty_footer');
+	}
+
+
+	public function new_bottle($story_id = null)
+	{
+		$user_id = $this->_require_login();
+        $this->_require_register();
+
+		$user = $this->_get_user_byid($user_id);
+		$data['user_name'] = $user[0]['user_name'];
+		
+			$users = $this->user_model->get();
+			$data['users_count'] = sizeof($users);	
+
+			$data['fb_login_url'] = $this->_fb_login_url();	
+			$data['login_logout_url'] = '/api/logout';	
+        	$data['login_logout_text'] = 'Sign Out';	
+
+	        //check if user has this bottle
+        	$_is_user_bottle = $this->_is_user_bottle($story_id);
+        	if($_is_user_bottle == 0){
+				$this->load->view('index/twenty_head');
+				$this->load->view('index/pick',$data);		
+				$this->load->view('index/twenty_footer');
+        	}else{
+        		$story = $this->story_model->get($story_id);
+        		$sender = $this->user_model->get($story[0]['story_user_id']);
+
+        		$data['user_school'] = $sender[0]['user_school'];
+        		$data['user_department'] = $sender[0]['user_department'];
+        		$data['user_nickname'] = $sender[0]['user_nickname'];
+        		$data['story'] = $story[0];
+				$this->load->view('index/twenty_head');
+				$this->load->view('index/pick_bottle',$data);		
+				$this->load->view('index/twenty_footer');
+        	}
+
+
 	}
 
 

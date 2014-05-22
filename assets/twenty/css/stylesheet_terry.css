@@ -3,6 +3,16 @@
 	font-family: "LiSong Pro","SimSun","FangSong","Microsoft YaHei","LiHei Pro","明體","微軟正黑體", "Microsoft JhengHei", "新細明體",'Lato', sans-serif;
 }
 
+#letter-background {
+	border-radius: 5px;
+	margin:auto; padding: 0 0 0 0;
+	background: url(../../img/lines.png); position: relative;
+	color: black;
+	text-align: left;
+	padding: 2em 2em 2em 2em;
+}
+
 .story_code {
 	font-size: 12px;
 }
+

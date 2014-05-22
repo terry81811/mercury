@@ -9,6 +9,7 @@ class Api extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('story_model');
+        $this->load->model('pick_model');
 
         $this->load->library('curl');
     }
@@ -230,6 +231,34 @@ class Api extends CI_Controller
 
         redirect('/story_sent');
     }
+
+    //---------------------------------------------------------------------------------------------------
+    // CRUD APIs - PICK BOTTLES
+    //---------------------------------------------------------------------------------------------------
+
+    public function enter_code()
+    {
+        $user_id = $this->_require_login();
+        $this->_require_register();
+
+        $post_data = $this->input->post(NULL, TRUE);
+        $code = $post_data['code'];
+
+        $story = $this->story_model->get(array('story_code' => $code));
+        $sender_id = $story[0]['story_user_id'];
+
+        $pick_data = array(
+            'pick_sender_id' => $sender_id,
+            'pick_picker_id' => $user_id,
+            'pick_story_id' => $story[0]['story_id'],
+            'pick_time' => date("Y-m-d H:i:s")
+            );
+
+        $this->pick_model->insert($pick_data);
+
+        redirect('/new_bottle/'.$story[0]['story_id']);
+    }
+
 
     //---------------------------------------------------------------------------------------------------
     // EMAIL

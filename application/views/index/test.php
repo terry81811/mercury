@@ -6,30 +6,18 @@
 				<h1 id="logo"><a href="/">Mercury <span>瓶中信</span></a></h1>
 				<nav id="nav">
 					<ul>
-						<li class="current"><a href="/">Welcome</a></li>
+						<li class="current"><a href="/">Welcome <?php echo $user_name;?></a></li>
 						<li class="submenu">
 							<a href="">我的Mercury</a>
 							<ul>
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><a href="right-sidebar.html">Right Sidebar</a></li>
-								<li><a href="no-sidebar.html">No Sidebar</a></li>
-								<li><a href="contact.html">Contact</a></li>
-								<li class="submenu">
-									<a href="">Submenu</a>
-									<ul>
-										<li><a href="#">Dolore Sed</a></li>
-										<li><a href="#">Consequat</a></li>
-										<li><a href="#">Lorem Magna</a></li>
-										<li><a href="#">Sed Magna</a></li>
-										<li><a href="#">Ipsum Nisl</a></li>
-									</ul>
-								</li>
+								<li><a href="/write_story">寫故事</a></li>
+								<li><a href="/pick">撿瓶子</a></li>
+								<li><a href="/my_story">屬於我的故事</a></li>
+								<li><a href="/bottles">我撿過的瓶子</a></li>
 							</ul>
 						</li>
 
-						<?php
 
-						?>
 
 						<li><a href="<? echo "$login_logout_url"; ?>" class="button special"><?php echo $login_logout_text;?> </a></li>
 					</ul>
@@ -58,7 +46,7 @@
 					<footer>
 						<ul class="buttons vertical">
 							<li><a href="<?php  echo "$fb_login_url"; ?>" class="button fit scrolly">寫下我的故事</a></li>
-							<li><a href="/pick" class="button fit scrolly">撿起別人的漂流瓶</a></li>
+							<li><a href="/pick" class="button fit scrolly special">撿起別人的漂流瓶</a></li>
 						</ul>
 					</footer>
 				

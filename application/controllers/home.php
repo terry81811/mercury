@@ -212,11 +212,8 @@ class Home extends CI_Controller
         $this->_require_register();
 
 		$user = $this->_get_user_byid($user_id);
-		$data['user_name'] = $user[0]['user_name'];
-		
-			$users = $this->user_model->get();
-			$data['users_count'] = sizeof($users);	
 
+			$data['user_name'] = $user[0]['user_name'];
 			$data['fb_login_url'] = $this->_fb_login_url();	
 			$data['login_logout_url'] = '/api/logout';	
         	$data['login_logout_text'] = 'Sign Out';	
@@ -239,10 +236,46 @@ class Home extends CI_Controller
 				$this->load->view('index/pick_bottle',$data);		
 				$this->load->view('index/twenty_footer');
         	}
-
-
 	}
 
+	public function bottles($story_id = null)
+	{
+		$user_id = $this->_require_login();
+        $this->_require_register();
+
+		$user = $this->_get_user_byid($user_id);
+
+		$data['user_name'] = $user[0]['user_name'];
+		$data['fb_login_url'] = $this->_fb_login_url();	
+		$data['login_logout_url'] = '/api/logout';	
+    	$data['login_logout_text'] = 'Sign Out';	
+
+        if($story_id == null){
+        	$story = array();
+        	$picked_story_ids = $this->pick_model->get(array('pick_picker_id' => $user_id));
+        	foreach ($picked_story_ids as $_key => $_value) {
+        		$story = $this->story_model->get($_value['pick_story_id']);
+        		$user = $this->user_model->get($story[0]['story_user_id']);
+        		
+        		$story[0]['user_nickname'] = $user[0]['user_nickname'];
+        		$story[0]['user_school'] = $user[0]['user_school'];
+        		$story[0]['user_department'] = $user[0]['user_department'];
+
+        		$picked_story[] = $story[0];
+        	}
+//        	print_r($picked_story);
+
+        	$data['picked_story'] = $picked_story;
+
+			$this->load->view('index/twenty_head');
+			$this->load->view('index/bottles',$data);		
+			$this->load->view('index/twenty_footer');
+
+        }else{
+        	redirect('/new_bottle/'.$story_id);
+        }
+
+	}
 
 	//---------------------------------------------------------------------------------------------------
 	

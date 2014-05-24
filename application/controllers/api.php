@@ -256,7 +256,7 @@ class Api extends CI_Controller
 
         $this->pick_model->insert($pick_data);
 
-        redirect('/new_bottle/'.$story[0]['story_id']);
+        redirect('/bottles/'.$story[0]['story_id']);
     }
 
 
@@ -285,16 +285,35 @@ class Api extends CI_Controller
 
         }else if($email_type == 'self-def'){
             $email_to = explode(",", $post_data['email_to']);
-        }
+        }else if($email_type == 'write-user'){
+            $stories = $this->story_model->get();
+            foreach ($stories as $_key => $story) {
+                $user_id = $story['story_user_id'];
+                $raw_user = $this->user_model->get($user_id);
+                $user[$user_id] = $raw_user[0];
 
-//        print_r($email_to);
+            }
+            foreach ($user as $user_id => $user_data) {
+
+                $email_to[] = $user_data['user_email'];
+            }
+
+
+        }
 
         $email_subject = $post_data['email_subject'];
         
         $email_message = $post_data['email_message'];
         $email_message = "<p>".$email_message."</p>";
 
-        $this->send_email($email_subject,$email_message,$email_to);
+        if($post_data['list_receiver'] == 'on'){
+            echo "<pre>";
+            print_r($email_to);
+            echo "</pre>";
+        }
+        else{
+            $this->send_email($email_subject,$email_message,$email_to);
+        }
     }
 
     private function send_email($email_subject = NULL, $email_message = NULL, $email_to = NULL)

@@ -17,6 +17,9 @@
 		<label class="checkbox-inline">
 		  <input type="radio" class="other-def" value="all" name="email_type" checked> 全部用戶
 		</label>
+    <label class="checkbox-inline">
+      <input type="radio" class="other-def" value="write-user" name="email_type" checked> 已寫信用戶
+    </label>
 		<label class="checkbox-inline">
 		  <input type="radio" class="other-def" value="active-user" name="email_type"> 活躍用戶
 		</label>
@@ -54,7 +57,12 @@
     <div class="col-sm-offset-2 col-sm-10">
       <div class="checkbox">
         <label>
-          <input type="checkbox" name="email_to_mercury"> 發送備份信給mercury
+          <input type="checkbox" name="email_to_mercury" class="disable"> 發送備份信給mercury
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="list_receiver"> 顯示收件清單（不會寄出信）
         </label>
       </div>
     </div>

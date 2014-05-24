@@ -1,6 +1,7 @@
 .letter-content {
 	font-style: italic;
 	font-family: "LiSong Pro","SimSun","FangSong","Microsoft YaHei","LiHei Pro","明體","微軟正黑體", "Microsoft JhengHei", "新細明體",'Lato', sans-serif;
+	margin-bottom: 0em;
 }
 
 #letter-background {
@@ -28,3 +29,14 @@
 		padding: 6em 0;
 		text-align: center;
 	}
+
+.limit-letter-content {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   line-height: 1em;     /* fallback */
+   max-height: 3em;      /* fallback */
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+
+}

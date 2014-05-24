@@ -206,38 +206,6 @@ class Home extends CI_Controller
 	}
 
 
-	public function new_bottle($story_id = null)
-	{
-		$user_id = $this->_require_login();
-        $this->_require_register();
-
-		$user = $this->_get_user_byid($user_id);
-
-			$data['user_name'] = $user[0]['user_name'];
-			$data['fb_login_url'] = $this->_fb_login_url();	
-			$data['login_logout_url'] = '/api/logout';	
-        	$data['login_logout_text'] = 'Sign Out';	
-
-	        //check if user has this bottle
-        	$_is_user_bottle = $this->_is_user_bottle($story_id);
-        	if($_is_user_bottle == 0){
-				$this->load->view('index/twenty_head');
-				$this->load->view('index/pick',$data);		
-				$this->load->view('index/twenty_footer');
-        	}else{
-        		$story = $this->story_model->get($story_id);
-        		$sender = $this->user_model->get($story[0]['story_user_id']);
-
-        		$data['user_school'] = $sender[0]['user_school'];
-        		$data['user_department'] = $sender[0]['user_department'];
-        		$data['user_nickname'] = $sender[0]['user_nickname'];
-        		$data['story'] = $story[0];
-				$this->load->view('index/twenty_head');
-				$this->load->view('index/pick_bottle',$data);		
-				$this->load->view('index/twenty_footer');
-        	}
-	}
-
 	public function bottles($story_id = null)
 	{
 		$user_id = $this->_require_login();
@@ -272,8 +240,25 @@ class Home extends CI_Controller
 			$this->load->view('index/twenty_footer');
 
         }else{
-        	redirect('/new_bottle/'.$story_id);
-        }
+	        //check if user has this bottle
+        	$_is_user_bottle = $this->_is_user_bottle($story_id);
+        	if($_is_user_bottle == 0){
+				$this->load->view('index/twenty_head');
+				$this->load->view('index/pick',$data);		
+				$this->load->view('index/twenty_footer');
+        	}else{
+        		$story = $this->story_model->get($story_id);
+        		$sender = $this->user_model->get($story[0]['story_user_id']);
+
+        		$data['user_school'] = $sender[0]['user_school'];
+        		$data['user_department'] = $sender[0]['user_department'];
+        		$data['user_nickname'] = $sender[0]['user_nickname'];
+        		$data['story'] = $story[0];
+				$this->load->view('index/twenty_head');
+				$this->load->view('index/pick_bottle',$data);		
+				$this->load->view('index/twenty_footer');
+        	}
+       	}
 
 	}
 

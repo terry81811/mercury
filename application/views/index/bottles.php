@@ -3,7 +3,7 @@
 	
 		<!-- Header -->
 			<header id="header" class="alt">
-				<h1 id="logo"><a href="/">Mercury <span>瓶中信</span></a></h1>
+				<h1 id="logo"><a href="/">Mercury <span>瓶中信 </span></a><span class="icon fa-envelope"> 我撿過的瓶子</span></h1>
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="/">Welcome <?php echo $user_name;?></a></li>
@@ -12,7 +12,7 @@
 							<ul>
 								<li><a href="/write_story">寫故事</a></li>
 								<li><a href="/pick">撿瓶子</a></li>
-								<li><a href="/my_story">屬於我的故事</a></li>
+								<li><a href="/my_bottles">屬於我的故事</a></li>
 								<li><a href="/bottles">我撿過的瓶子</a></li>
 							</ul>
 						</li>

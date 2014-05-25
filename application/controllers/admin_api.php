@@ -33,4 +33,33 @@ class Admin_api extends CI_Controller
         redirect('/mercury_db_login');        
     }
 
+    //---------------------------------------------------------------------------------------------------
+
+    //update today story
+    public function today_stories()
+    {
+        $stories = $this->story_model->get();
+        shuffle($stories);
+
+        $users = $this->user_model->get();
+        foreach ($users as $_key => $user) {
+            if(sizeof($stories) == 0){
+                $stories = $this->story_model->get();
+                shuffle($stories);
+            }
+
+            if($stories[0]['story_id'] != $user['user_today_story_id']){
+                $story = array_shift($stories);
+                $this->user_model->update(array('user_today_story_id' => $story['story_id']),$user['user_id']);
+            }else{
+                $story_key = array_rand($stories, 1);
+                $story = $stories[$story_key];
+                $this->user_model->update(array('user_today_story_id' => $story['story_id']),$user['user_id']);
+            }
+
+        }
+
+    }
+
+
 }

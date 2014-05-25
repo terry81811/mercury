@@ -3,7 +3,7 @@
 	
 		<!-- Header -->
 			<header id="header" class="alt">
-				<h1 id="logo"><a href="/">Mercury <span>瓶中信</span></a></h1>
+				<h1 id="logo"><a href="/">Mercury <span>瓶中信 </span></a><span class="icon fa-envelope"> 屬於我的故事</span></h1>
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="/">Welcome <?php echo $user_name;?></a></li>
@@ -12,7 +12,7 @@
 							<ul>
 								<li><a href="/write_story">寫故事</a></li>
 								<li><a href="/pick">撿瓶子</a></li>
-								<li><a href="/my_story">屬於我的故事</a></li>
+								<li><a href="/my_bottles">屬於我的故事</a></li>
 								<li><a href="/bottles">我撿過的瓶子</a></li>
 							</ul>
 						</li>
@@ -41,7 +41,7 @@
 								<span class="letter-content" style="font-size:13px; font-weight:300;">
 								<a href="/bottles/<?php echo $story['story_id']?>">看完整內容與回覆...</a></span>		
 							<p class="story_footer letter-content" style="text-align:right;">
-								<?php echo ' 於 '.date("m-d-Y",strtotime($story['story_time'])).'<span class="story_code"> #'.$story['story_code'].'<br></span>'?>
+								<?php echo date("m-d-Y",strtotime($story['story_time'])).'<span class="story_code"> #'.$story['story_code'].'<br></span>'?>
 						
 							</p>
 						</div>							

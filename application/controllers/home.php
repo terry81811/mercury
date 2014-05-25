@@ -283,6 +283,10 @@ class Home extends CI_Controller
 				        			$replies[$_key]['user_school'] = $reply_sender[0]['user_school'];
 				        			$replies[$_key]['user_department'] = $reply_sender[0]['user_department'];
 									$replies[$_key]['is_send'] = false;
+			        				if($reply['reply_sender_id'] == $user_id){
+			        					unset($replies[$_key]);
+			        				}
+
 			        		}
 
 			        		$user = $this->user_model->get($user_id);

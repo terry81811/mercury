@@ -257,12 +257,12 @@ class Api extends CI_Controller
 
         $post_data = $this->input->post(NULL, TRUE);
         $story_id = $post_data['story_id'];
+        $story = $this->story_model->get($story_id);
 
-        if($this->_is_user_bottle($story_id) == 0){
+        if($this->_is_user_bottle($story_id) == 0 && $story[0]['story_user_id'] != $user_id){
             redirect('/pick');
         }else{
 
-            $story = $this->story_model->get($story_id);
             $reply_to_id = $story[0]['story_user_id'];
 
             $reply_data = array(
@@ -298,6 +298,11 @@ class Api extends CI_Controller
         }        
 
         $sender_id = $story[0]['story_user_id'];
+
+        if($sender_id == $user_id){
+            redirect('/bottles/'.$story[0]['story_id']);
+        }
+
         $pick_data = array(
             'pick_sender_id' => $sender_id,
             'pick_picker_id' => $user_id,

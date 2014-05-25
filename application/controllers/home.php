@@ -322,14 +322,14 @@ class Home extends CI_Controller
 			        		foreach ($all_replies as $_key => $reply) {
 
 			        			if(($reply['reply_sender_id'] == $sender_id && $reply['reply_to_id'] == $user_id) || ($reply['reply_sender_id'] == $user_id && $reply['reply_to_id'] == $sender_id) ){
-			        				$replies[$_key] = $reply;
-				        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
-				        			$replies[$_key]['user_nickname'] = $reply_sender[0]['user_nickname'];
+			        				$reply_sender = $this->user_model->get($reply['reply_sender_id']);
+				        			$reply['user_nickname'] = $reply_sender[0]['user_nickname'];
 				        			if($reply['reply_sender_id'] == $user_id){
-				        				$replies[$_key]['is_send'] = true;
+				        				$reply['is_send'] = true;
 				        			}else{
-				        				$replies[$_key]['is_send'] = false;
+				        				$reply['is_send'] = false;
 				        			}
+				        			$replies[] = $reply;
 			        			}
 			        		}
 

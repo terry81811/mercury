@@ -39,7 +39,6 @@
 												
 											<p class="story_footer letter-content" style="text-align:right;">
 												<span style="font-size:13px; font-weight:300;">
-												<?php echo $user_school.' '.$user_department.'<br>';?>
 												<?php echo $user_nickname.' 於 '.date("m-d-Y",strtotime($story['story_time'])).'<span class="story_code"> #'.$story['story_code'].'</span>'?>
 												</span>
 											</p>

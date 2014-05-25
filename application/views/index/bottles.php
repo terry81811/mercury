@@ -42,7 +42,6 @@
 								<a href="/bottles/<?php echo $story['story_id']?>">繼續閱讀/回覆...</a></span>		
 							<p class="story_footer letter-content" style="text-align:right;">
 								<span style="font-size:13px; font-weight:300;">
-								<?php echo $story['user_school'].' '.$story['user_department'].'<br>';?>
 								</span>
 								<?php echo $story['user_nickname'].' 於 '.date("m-d-Y",strtotime($story['story_time'])).'<span class="story_code"> #'.$story['story_code'].'<br></span>'?>
 						

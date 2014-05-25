@@ -2,16 +2,28 @@
 	<body class="contact loading">
 	
 		<!-- Header -->
+		<!-- Header -->
 			<header id="header">
-				<h1 id="logo"><a href="/">Mercury <span>瓶中信</span></a></h1>
+				<h1 id="logo"><a href="/">Mercury <span>瓶中信 </span></a><span class="icon fa-envelope"> 寫。故事</span></h1>
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="/">Welcome <?php echo $user_name;?></a></li>
+						<li class="submenu">
+							<a href="">我的Mercury</a>
+							<ul>
+								<li><a href="/write_story">寫故事</a></li>
+								<li><a href="/pick">撿瓶子</a></li>
+								<li><a href="/my_bottles">屬於我的故事</a></li>
+								<li><a href="/bottles">我撿過的瓶子</a></li>
+							</ul>
+						</li>
 
-						<li><a href="/api/logout" class="button special">Sign Out</a></li>
+
+						<li><a href="<? echo "$login_logout_url"; ?>" class="button special"><?php echo $login_logout_text;?> </a></li>
 					</ul>
 				</nav>
 			</header>
+
 
 	
 		<!-- Main -->

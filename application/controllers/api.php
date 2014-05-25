@@ -77,7 +77,7 @@ class Api extends CI_Controller
                     redirect('/register');
                 }
                 else{
-                    redirect('/write_story');
+                    redirect('/');
                 }
 			}
 
@@ -102,7 +102,7 @@ class Api extends CI_Controller
 			        $this->session->set_userdata('user_fbid', $is_old[0]['user_fbid']);
 			        $this->update_user_login_time($user_id);
                     $this->update_user_login_count($user_id);
-			        redirect('/write_story');
+			        redirect('/');
                 }
                 else
                 {
@@ -120,7 +120,7 @@ class Api extends CI_Controller
 
 			        $this->session->set_userdata('user_id', $user_id);             
 			        $this->session->set_userdata('user_fbid', $user_fbid);
-			        redirect('/write_story');
+			        redirect('/');
                 }
 
             }

@@ -84,7 +84,7 @@ class Home extends CI_Controller
 			$user = $this->_get_user_byid($user_id);
 			$data['user_name'] = $user[0]['user_name'];
 
-			$data['fb_login_url'] = $this->_fb_login_url();	
+			$data['fb_login_url'] = '/write_story';	
 			$data['login_logout_url'] = '/api/logout';	
         	$data['login_logout_text'] = 'Sign Out';	
         	
@@ -92,7 +92,7 @@ class Home extends CI_Controller
 			$data['users_count'] = sizeof($users);	
 
 			$this->load->view('index/twenty_head');
-			$this->load->view('index/index_login',$data);
+			$this->load->view('index/test',$data);
 			$this->load->view('index/twenty_footer');
         }
 	}
@@ -120,7 +120,8 @@ class Home extends CI_Controller
 
 		$user = $this->_get_user_byid($user_id);
 		$data['user_name'] = $user[0]['user_name'];
-
+			$data['login_logout_url'] = '/api/logout';	
+        	$data['login_logout_text'] = 'Sign Out';	
 
 		$this->load->view('index/twenty_head');
 		$this->load->view('index/write_story',$data);		

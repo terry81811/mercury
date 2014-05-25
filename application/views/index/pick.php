@@ -47,11 +47,11 @@
 										</div>
 										<div class="6u">
 											<section>
-												<a href="#" id="enter_code"><span style="color:white;" class="icon fa-5x fa-bars"></span></a>
+												<a href="#" id="enter_code_btn"><span style="color:white;" class="icon fa-5x fa-bars"></span></a>
 												<header>
 													<h3><a href="#" id="enter_code">輸入實體漂流瓶代碼</a></h3>
 												</header>
-														<form action="/api/enter_code" method="post">
+														<form id="code_form" action="/api/enter_code" method="post">
 														    <div class="input-group" style="width:70%;margin:auto auto;">
 														      <input style="background-color:rgba(255,255,255,0.8);color:black" type="text" class="form-control" name="code" placeholde="請輸入code">
 														      <span class="input-group-btn">

@@ -207,7 +207,7 @@ class Home extends CI_Controller
 		$this->load->view('index/twenty_footer');
 	}
 
-	public function pick()
+	public function pick($code_err = null)
 	{
 		$user_id = $this->_require_login();
         $this->_require_register();
@@ -222,8 +222,15 @@ class Home extends CI_Controller
 			$data['login_logout_url'] = '/api/logout';	
         	$data['login_logout_text'] = 'Sign Out';	
 
+        	$err = 0;
+        	if(!empty($code_err)){
+        		$err = 1;
+        	}
+        		$data['err'] = $err;
+
 		$this->load->view('index/twenty_head');
 		$this->load->view('index/pick',$data);		
+		$this->load->view('index/pickjs',$data);		
 		$this->load->view('index/twenty_footer');
 	}
 

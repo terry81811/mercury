@@ -287,6 +287,10 @@ class Api extends CI_Controller
         $code = $post_data['code'];
 
         $story = $this->story_model->get(array('story_code' => $code));
+
+        if(sizeof($story) == 0){
+            redirect('pick/code_err');
+        }
         $sender_id = $story[0]['story_user_id'];
 
         $pick_data = array(
@@ -307,6 +311,11 @@ class Api extends CI_Controller
         $this->_require_register();
 
         $user = $this->user_model->get($user_id);
+
+        $is_picked = $this->pick_model->get(array('pick_picker_id' => $user_id, 'pick_story_id' => $user[0]['user_today_story_id']));
+        if(sizeof($is_picked)>0){
+            redirect('pick');
+        }
 
         $story = $this->story_model->get($user[0]['user_today_story_id']);
         $sender_id = $story[0]['story_user_id'];

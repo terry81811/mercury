@@ -275,16 +275,17 @@ class Home extends CI_Controller
         	if($user_id == $story[0]['story_user_id']){
 
 			        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
-			        		$replies = $all_replies;
+			        		$replies = array();
 
-			        		foreach ($replies as $_key => $reply) {
+			        		foreach ($all_replies as $_key => $reply) {
 				        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
-				        			$replies[$_key]['user_nickname'] = $reply_sender[0]['user_nickname'];
-				        			$replies[$_key]['user_school'] = $reply_sender[0]['user_school'];
-				        			$replies[$_key]['user_department'] = $reply_sender[0]['user_department'];
-									$replies[$_key]['is_send'] = false;
-			        				if($reply['reply_sender_id'] == $user_id){
-			        					unset($replies[$_key]);
+				        			$reply['user_nickname'] = $reply_sender[0]['user_nickname'];
+				        			$reply['user_school'] = $reply_sender[0]['user_school'];
+				        			$reply['user_department'] = $reply_sender[0]['user_department'];
+									$reply['is_send'] = false;
+
+			        				if($reply['reply_sender_id'] != $user_id){
+										$replies[$reply['reply_sender_id']] = $reply;
 			        				}
 
 			        		}

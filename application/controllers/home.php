@@ -255,97 +255,130 @@ class Home extends CI_Controller
         	}
 
         	$data['picked_story'] = $picked_story;
-
 			$this->load->view('index/twenty_head');
 			$this->load->view('index/bottles',$data);		
 			$this->load->view('index/twenty_footer');
 
         }else{
-        	//指定story，先測試user是否擁有此故事
-        	$_is_user_bottle = $this->_is_user_bottle($story_id);
 
-        	if($_is_user_bottle == 0){
-        		$data['_is_user_bottle'] = '0';
-				$this->load->view('index/twenty_head');
-				$this->load->view('index/pick',$data);		
-				$this->load->view('index/twenty_footer');
-        	}else{
-        		$story = $this->story_model->get($story_id);
-        		$sender = $this->user_model->get($story[0]['story_user_id']);
-        		$sender_id = $sender[0]['user_id'];
+        	$story = $this->story_model->get($story_id);
 
-        		$waiting_reply = 0;
-				$reply_id_limit = 0;
-				$opposite_reply_id = 0;
+        	//指定story，測試user是否是story owner
+        	if($user_id == $story[0]['story_user_id']){
 
 
-        		//看使用者是否回應過
-        		$is_reply = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_sender_id' => $user_id));
+			        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
+			        		$replies = $all_replies;
 
-		        if(sizeof($is_reply) > 0){
+			        		foreach ($replies as $_key => $reply) {
+				        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
+				        			$replies[$_key]['user_nickname'] = $reply_sender[0]['user_nickname'];
+				        			$replies[$_key]['user_school'] = $reply_sender[0]['user_school'];
+				        			$replies[$_key]['user_department'] = $reply_sender[0]['user_department'];
+									$replies[$_key]['is_send'] = false;
+			        		}
 
-	        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
+			        		$user = $this->user_model->get($user_id);
+			        		
+			        		$data['user_school'] = $user[0]['user_school'];
+			        		$data['user_department'] = $user[0]['user_department'];
+			        		$data['user_nickname'] = $user[0]['user_nickname'];
+			        		$data['story'] = $story[0];
 
-	        		$replies = array();
-	        		foreach ($all_replies as $_key => $reply) {
+			        		$data['replies'] = $replies;
 
-	        			if(($reply['reply_sender_id'] == $sender_id && $reply['reply_to_id'] == $user_id) || ($reply['reply_sender_id'] == $user_id && $reply['reply_to_id'] == $sender_id) ){
-	        				$replies[$_key] = $reply;
-		        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
-		        			$replies[$_key]['user_nickname'] = $reply_sender[0]['user_nickname'];
-		        			if($reply['reply_sender_id'] == $user_id){
-		        				$replies[$_key]['is_send'] = true;
-		        			}else{
-		        				$replies[$_key]['is_send'] = false;
-		        			}
-	        			}
-	        		}
+							$this->load->view('index/twenty_head');
+							$this->load->view('index/pick_bottle_me',$data);		
+							$this->load->view('index/pick_bottlejs',$data);		
+							$this->load->view('index/twenty_footer');
 
-	        		//看使用者是否是還在等待瓶子主人回應	        		
-	        		if($replies[sizeof($replies) - 1]['reply_sender_id'] == $user_id){
-	        			$waiting_reply = 1;
-	        		}
+        	}
+        	else{
+		        	//指定story，測試user是否擁有此故事
+		        	$_is_user_bottle = $this->_is_user_bottle($story_id);
 
+		        	if($_is_user_bottle == 0){
+		        		$data['_is_user_bottle'] = '0';
+						$this->load->view('index/twenty_head');
+						$this->load->view('index/pick',$data);		
+						$this->load->view('index/twenty_footer');
+		        	}else{
+		        		$sender = $this->user_model->get($story[0]['story_user_id']);
+		        		$sender_id = $sender[0]['user_id'];
 
-	        		$data['waiting_reply'] = $waiting_reply;
-	        		$data['is_reply'] = sizeof($is_reply);
-	        		$data['replies'] = $replies;
-
-	        		$data['user_school'] = $sender[0]['user_school'];
-	        		$data['user_department'] = $sender[0]['user_department'];
-	        		$data['user_nickname'] = $sender[0]['user_nickname'];
-	        		$data['story'] = $story[0];
-					$this->load->view('index/twenty_head');
-					$this->load->view('index/pick_bottle',$data);		
-					$this->load->view('index/pick_bottlejs',$data);		
-					$this->load->view('index/twenty_footer');
-        		}
+		        		$waiting_reply = 0;
+						$reply_id_limit = 0;
+						$opposite_reply_id = 0;
 
 
-        		else{
+		        		//看使用者是否回應過
+		        		$is_reply = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_sender_id' => $user_id));
 
-	        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
-	        		$replies = $all_replies;
+				        if(sizeof($is_reply) > 0){
 
-	        		foreach ($replies as $_key => $reply) {
-		        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
-		        			$replies[$_key]['user_nickname'] = $reply_sender[0]['user_nickname'];
-							$replies[$_key]['is_send'] = false;
-	        		}
+			        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
 
-	        		$data['waiting_reply'] = $waiting_reply;
-	        		$data['is_reply'] = sizeof($is_reply);
-	        		$data['replies'] = $replies;
+			        		$replies = array();
+			        		foreach ($all_replies as $_key => $reply) {
 
-	        		$data['user_school'] = $sender[0]['user_school'];
-	        		$data['user_department'] = $sender[0]['user_department'];
-	        		$data['user_nickname'] = $sender[0]['user_nickname'];
-	        		$data['story'] = $story[0];
-					$this->load->view('index/twenty_head');
-					$this->load->view('index/pick_bottle',$data);		
-					$this->load->view('index/pick_bottlejs',$data);		
-					$this->load->view('index/twenty_footer');
-        		}
+			        			if(($reply['reply_sender_id'] == $sender_id && $reply['reply_to_id'] == $user_id) || ($reply['reply_sender_id'] == $user_id && $reply['reply_to_id'] == $sender_id) ){
+			        				$replies[$_key] = $reply;
+				        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
+				        			$replies[$_key]['user_nickname'] = $reply_sender[0]['user_nickname'];
+				        			if($reply['reply_sender_id'] == $user_id){
+				        				$replies[$_key]['is_send'] = true;
+				        			}else{
+				        				$replies[$_key]['is_send'] = false;
+				        			}
+			        			}
+			        		}
+
+			        		//看使用者是否是還在等待瓶子主人回應	        		
+			        		if($replies[sizeof($replies) - 1]['reply_sender_id'] == $user_id){
+			        			$waiting_reply = 1;
+			        		}
+
+
+			        		$data['waiting_reply'] = $waiting_reply;
+			        		$data['is_reply'] = sizeof($is_reply);
+			        		$data['replies'] = $replies;
+
+			        		$data['user_school'] = $sender[0]['user_school'];
+			        		$data['user_department'] = $sender[0]['user_department'];
+			        		$data['user_nickname'] = $sender[0]['user_nickname'];
+			        		$data['story'] = $story[0];
+							$this->load->view('index/twenty_head');
+							$this->load->view('index/pick_bottle',$data);		
+							$this->load->view('index/pick_bottlejs',$data);		
+							$this->load->view('index/twenty_footer');
+		        		}
+
+
+		        		else{
+
+			        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
+			        		$replies = $all_replies;
+
+			        		foreach ($replies as $_key => $reply) {
+				        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
+				        			$replies[$_key]['user_nickname'] = $reply_sender[0]['user_nickname'];
+									$replies[$_key]['is_send'] = false;
+			        		}
+
+			        		$data['waiting_reply'] = $waiting_reply;
+			        		$data['is_reply'] = sizeof($is_reply);
+			        		$data['replies'] = $replies;
+
+			        		$data['user_school'] = $sender[0]['user_school'];
+			        		$data['user_department'] = $sender[0]['user_department'];
+			        		$data['user_nickname'] = $sender[0]['user_nickname'];
+			        		$data['story'] = $story[0];
+							$this->load->view('index/twenty_head');
+							$this->load->view('index/pick_bottle',$data);		
+							$this->load->view('index/pick_bottlejs',$data);		
+							$this->load->view('index/twenty_footer');
+		        		}
+		        	}
         	}
        	}
 	}
@@ -353,12 +386,75 @@ class Home extends CI_Controller
 
 
 
+	public function bottles_reply($story_id = null)
+	{
+
+		$user_id = $this->_require_login();
+        $this->_require_register();
+
+		$user = $this->_get_user_byid($user_id);
+
+		$data['user_name'] = $user[0]['user_name'];
+		$data['fb_login_url'] = $this->_fb_login_url();	
+		$data['login_logout_url'] = '/api/logout';	
+    	$data['login_logout_text'] = 'Sign Out';	
+
+		$get_data = $this->input->get(NULL, TRUE);
+
+    	if(empty($story_id)) {
+    		redirect('/bottles');
+    	}
+		if(empty($get_data['sender_id'])){
+    		redirect('/bottles/'.$story_id);
+		}
+
+
+		$sender_id = $get_data['sender_id'];
+        $story = $this->story_model->get($story_id);
+
+		//確認該user真的有reply這篇文章
+		$is_reply = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_sender_id' => $sender_id));
+		if(sizeof($is_reply) == 0){
+    		redirect('/bottles/'.$story_id);			
+		}
 
 
 
 
+        					$replies = array();
+			        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
+			        		foreach ($all_replies as $_key => $reply) {
+
+			        			if(($reply['reply_sender_id'] == $sender_id && $reply['reply_to_id'] == $user_id) || ($reply['reply_sender_id'] == $user_id && $reply['reply_to_id'] == $sender_id) ){
+			        				$replies[$_key] = $reply;
+				        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
+				        			$replies[$_key]['user_school'] = $reply_sender[0]['user_school'];
+				        			$replies[$_key]['user_department'] = $reply_sender[0]['user_department'];
+				        			$replies[$_key]['user_nickname'] = $reply_sender[0]['user_nickname'];
+				        			if($reply['reply_sender_id'] == $user_id){
+				        				$replies[$_key]['is_send'] = true;
+				        			}else{
+				        				$replies[$_key]['is_send'] = false;
+				        			}
+			        			}
+			        		}
+
+			        		$user = $this->user_model->get($user_id);
+			        		
+			        		$data['user_school'] = $user[0]['user_school'];
+			        		$data['user_department'] = $user[0]['user_department'];
+			        		$data['user_nickname'] = $user[0]['user_nickname'];
+			        		$data['story'] = $story[0];
+
+			        		$data['replies'] = $replies;
+
+							$this->load->view('index/twenty_head');
+							$this->load->view('index/pick_bottle_me_res',$data);		
+							$this->load->view('index/pick_bottlejs',$data);		
+							$this->load->view('index/twenty_footer');
 
 
+	}
 
 
 

@@ -306,11 +306,15 @@ class Api extends CI_Controller
         $user_id = $this->_require_login();
         $this->_require_register();
 
-        
+        $user = $this->user_model->get($user_id);
+
+        $story = $this->story_model->get($user[0]['user_today_story_id']);
+        $sender_id = $story[0]['story_user_id'];
+
         $pick_data = array(
             'pick_sender_id' => $sender_id,
             'pick_picker_id' => $user_id,
-            'pick_story_id' => $story[0]['story_id'],
+            'pick_story_id' => $user[0]['user_today_story_id'],
             'pick_time' => date("Y-m-d H:i:s")
             );
 

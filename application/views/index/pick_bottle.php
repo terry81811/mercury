@@ -24,16 +24,14 @@
 			</header>
 
 		<!-- Banner -->		
-			<section id="banner">
+			<section id="banner-fix">
 				
 				<header class="container">
 							<p style="font-style:italic; font-size:16px; font-weight:300;">“ 據說，有一片Mercury海<br>把你的心事、秘密放入瓶中，投進海裡，就可以收到回信。<br>
 					你不知道信從何而來，也不知道瓶子飄向何處... ”</p>
 				</header>
 						<!-- Content -->
-							<div id="letter-background" class="content wrapper style2 special container small">
-
-
+							<div id="letter-background" class="content wrapper style2 special container small" style="margin:1em auto;">
 									<div class="row half">
 										<div class="12u">
 								<?php	
@@ -42,11 +40,45 @@
 											<p class="story_footer letter-content" style="text-align:right;">
 												<span style="font-size:13px; font-weight:300;">
 												<?php echo $user_school.' '.$user_department.'<br>';?>
-												</span>
 												<?php echo $user_nickname.' 於 '.date("m-d-Y",strtotime($story['story_time'])).'<span class="story_code"> #'.$story['story_code'].'</span>'?>
+												</span>
 											</p>
+							
+									</div><!-- letter-background-->
+								</div><!--raw half-->
+							</div><!--12u-->
+
+							<div id="letter-background" class="content wrapper style2 special container small" style="margin:1em auto;">
+									<div class="row half">
+										<div class="12u">
+							<?php
+								foreach ($replies as $_key => $reply) {
+							?>
+
+								<?php
+									if($reply['is_send'] == true){
+										echo '<p class="story_footer letter-content" style="text-align:right;">';
+									}else{										
+										echo '<p class="story_footer letter-content" style="text-align:left;">';
+									}
+								?>
+										<?php echo $reply['reply_text'] ?>
+										<br>
+										<span style="font-size:13px; font-weight:300;">
+										<?php echo $reply['user_nickname'].' '.date("m-d H:i",strtotime($reply['reply_time']))?>
+										</span>
+									</p>
+
+
+								<?php
+									}
+								?>
+
+
+										<form id="response_form" method="post" action="/api/story_response">
 											<div class="" style="margin-bottom:1em;">
-												<textarea class="story_footer letter-content" name="" id="" rows="5" placeholder="To <?php echo $user_nickname?>，我..."></textarea>
+												<input type="hidden" name="story_id" value="<?php echo $story['story_id'];?>">
+												<textarea class="story_footer letter-content" name="response_content" id="response_content" rows="5" placeholder="To <?php echo $user_nickname?>，我..."></textarea>
 											</div>
 											<div style="text-align:center">
 
@@ -55,31 +87,24 @@
 													<li><a href="#" id="pick_response" class="small button">回覆</a>	</li>
 												</ul>
 											</div>
+										</form>
 										</div>	
 									</div>
 
 
 							</div>
 				
-			</section>
 		
 
 
 		<!-- Footer -->
-			<footer id="footer">
 					<ul class="buttons">
 						<li><a target="_blank" href="https://www.facebook.com/mercurybottle?fref=ts" class="button special">facebook粉絲頁</a></li>
 						<li><a href="#" class="button">聯絡我們</a></li>
 					</ul>
 
 				<span class="copyright">&copy; Mercury. All rights reserved. Design: HTML5 UP</span>				
-		
-			</footer>
-
-
-	<script>
-		 vph = $(window).height();
-	    $('#banner').height(vph);
-	</script>
+				</section>
+	
 
 	</body>

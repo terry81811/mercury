@@ -10,6 +10,7 @@ class Api extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('story_model');
         $this->load->model('pick_model');
+        $this->load->model('reply_model');
 
         $this->load->library('curl');
     }
@@ -45,6 +46,19 @@ class Api extends CI_Controller
         }
         else{
             return 1;
+        }
+    }
+
+    private function _is_user_bottle($story_id = null)
+    {
+        if($story_id){
+            $user_id = $this->_require_login();
+            $is_user_bottle = $this->pick_model->get(array('pick_story_id' => $story_id, 'pick_picker_id' => $user_id));
+            if(sizeof($is_user_bottle) == 0){
+                return 0;
+            }else{
+                return 1;
+            }
         }
     }
 
@@ -236,6 +250,34 @@ class Api extends CI_Controller
     // CRUD APIs - PICK BOTTLES
     //---------------------------------------------------------------------------------------------------
 
+    public function story_response()
+    {
+        $user_id = $this->_require_login();
+        $this->_require_register();
+
+        $post_data = $this->input->post(NULL, TRUE);
+        $story_id = $post_data['story_id'];
+
+        if($this->_is_user_bottle($story_id) == 0){
+            redirect('/pick');
+        }else{
+
+            $story = $this->story_model->get($story_id);
+            $reply_to_id = $story[0]['story_user_id'];
+
+            $reply_data = array(
+                'reply_sender_id' => $user_id,
+                'reply_story_id' => $story_id,
+                'reply_to_id' => $reply_to_id,
+                'reply_text' => $post_data['response_content'],
+                'reply_time' => date("Y-m-d H:i:s")
+                );
+
+            $reply_id = $this->reply_model->insert($reply_data);
+            redirect('/bottles/'.$story_id);
+        }
+    }
+
     public function enter_code()
     {
         $user_id = $this->_require_login();
@@ -257,6 +299,25 @@ class Api extends CI_Controller
         $this->pick_model->insert($pick_data);
 
         redirect('/bottles/'.$story[0]['story_id']);
+    }
+
+    public function pick_today()
+    {
+        $user_id = $this->_require_login();
+        $this->_require_register();
+
+        
+        $pick_data = array(
+            'pick_sender_id' => $sender_id,
+            'pick_picker_id' => $user_id,
+            'pick_story_id' => $story[0]['story_id'],
+            'pick_time' => date("Y-m-d H:i:s")
+            );
+
+        $this->pick_model->insert($pick_data);
+
+        redirect('/bottles/'.$story[0]['story_id']);
+
     }
 
 

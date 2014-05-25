@@ -8,6 +8,7 @@ class Home extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('story_model');
         $this->load->model('pick_model');
+        $this->load->model('reply_model');
     }
 
     private function _fb_login_url()
@@ -205,7 +206,6 @@ class Home extends CI_Controller
 		$this->load->view('index/twenty_footer');
 	}
 
-
 	public function bottles($story_id = null)
 	{
 		$user_id = $this->_require_login();
@@ -218,6 +218,7 @@ class Home extends CI_Controller
 		$data['login_logout_url'] = '/api/logout';	
     	$data['login_logout_text'] = 'Sign Out';	
 
+    	//若無指定story，則顯示全部
         if($story_id == null){
         	$story = array();
         	$picked_story_ids = $this->pick_model->get(array('pick_picker_id' => $user_id));
@@ -231,7 +232,6 @@ class Home extends CI_Controller
 
         		$picked_story[] = $story[0];
         	}
-//        	print_r($picked_story);
 
         	$data['picked_story'] = $picked_story;
 
@@ -240,9 +240,11 @@ class Home extends CI_Controller
 			$this->load->view('index/twenty_footer');
 
         }else{
-	        //check if user has this bottle
+        	//指定story，先測試user是否擁有此故事
         	$_is_user_bottle = $this->_is_user_bottle($story_id);
+
         	if($_is_user_bottle == 0){
+        		$data['_is_user_bottle'] = '0';
 				$this->load->view('index/twenty_head');
 				$this->load->view('index/pick',$data);		
 				$this->load->view('index/twenty_footer');
@@ -250,17 +252,87 @@ class Home extends CI_Controller
         		$story = $this->story_model->get($story_id);
         		$sender = $this->user_model->get($story[0]['story_user_id']);
 
+        		//看使用者是否回應過
+        		$waiting_reply = 0;
+        		$is_reply = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_sender_id' => $user_id));
+
+        		//get largest reply_id replied by user
+		        if(sizeof($is_reply) > 0){
+	        		$reply_id_limit = $is_reply[sizeof($is_reply) - 1]['reply_id'];
+
+	        		//看使用者是否是還在等待瓶子主人回應
+	        		$opposite_reply = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_sender_id' => $story[0]['story_user_id'] ));
+	        		
+	        		if(sizeof($opposite_reply) > 0){
+		        		$opposite_reply_id = $opposite_reply[sizeof($opposite_reply) - 1]['reply_id'];
+		        		if($reply_id_limit > $opposite_reply_id){
+		        			$waiting_reply = 1;
+		        		}
+	        		}
+        		}
+
+        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
+
+        		$replies = array();
+        		foreach ($all_replies as $_key => $reply) {
+
+        			//如果reply_id小於...就加入replies[]
+        			if($reply['reply_id'] <= $reply_id_limit || $reply['reply_to_id'] == $user_id){
+        				$replies[$_key] = $reply;
+	        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
+	        			$replies[$_key]['user_nickname'] = $reply_sender[0]['user_nickname'];
+	        			if($reply['reply_sender_id'] == $user_id){
+	        				$replies[$_key]['is_send'] = true;
+	        			}else{
+	        				$replies[$_key]['is_send'] = false;
+	        			}
+        			}
+        		}
+
+        		$data['waiting_reply'] = $waiting_reply;
+        		$data['is_reply'] = sizeof($is_reply);
+        		$data['replies'] = $replies;
+
         		$data['user_school'] = $sender[0]['user_school'];
         		$data['user_department'] = $sender[0]['user_department'];
         		$data['user_nickname'] = $sender[0]['user_nickname'];
         		$data['story'] = $story[0];
 				$this->load->view('index/twenty_head');
 				$this->load->view('index/pick_bottle',$data);		
+				$this->load->view('index/pick_bottlejs',$data);		
 				$this->load->view('index/twenty_footer');
         	}
        	}
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	//---------------------------------------------------------------------------------------------------
 	

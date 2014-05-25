@@ -37,9 +37,9 @@
 									<div class="row half">
 										<div class="6u">
 											<section>
-												<a href="pick_today"><span style="color:white;" class="icon fa-5x fa-envelope"></span></a>
+												<a href="/api/pick_today"><span style="color:white;" class="icon fa-5x fa-envelope"></span></a>
 												<header>
-													<h3><a href="pick_today">撿取今日的瓶中信</a></h3>
+													<h3><a href="/api/pick_today">撿取今日的瓶中信</a></h3>
 												</header>
 												<p>過了今天，你將再也沒有機會撿到同樣的故事<br></p>
 												

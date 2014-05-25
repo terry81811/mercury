@@ -248,6 +248,7 @@ class Home extends CI_Controller
 
     	//若無指定story，則顯示全部
         if($story_id == null){
+        	$picked_story = array();
         	$story = array();
         	$picked_story_ids = $this->pick_model->get(array('pick_picker_id' => $user_id));
         	foreach ($picked_story_ids as $_key => $_value) {
@@ -272,7 +273,6 @@ class Home extends CI_Controller
 
         	//指定story，測試user是否是story owner
         	if($user_id == $story[0]['story_user_id']){
-
 
 			        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
 			        		$replies = $all_replies;
@@ -312,6 +312,7 @@ class Home extends CI_Controller
 		        	}else{
 		        		$sender = $this->user_model->get($story[0]['story_user_id']);
 		        		$sender_id = $sender[0]['user_id'];
+		        		$reply_nickname = $sender[0]['user_nickname'];
 
 		        		$waiting_reply = 0;
 						$reply_id_limit = 0;
@@ -345,6 +346,7 @@ class Home extends CI_Controller
 			        			$waiting_reply = 1;
 			        		}
 
+			        		$data['reply_nickname'] = $reply_nickname;
 
 			        		$data['waiting_reply'] = $waiting_reply;
 			        		$data['is_reply'] = sizeof($is_reply);
@@ -371,6 +373,7 @@ class Home extends CI_Controller
 				        			$replies[$_key]['user_nickname'] = $reply_sender[0]['user_nickname'];
 									$replies[$_key]['is_send'] = false;
 			        		}
+			        		$data['reply_nickname'] = $reply_nickname;
 
 			        		$data['waiting_reply'] = $waiting_reply;
 			        		$data['is_reply'] = sizeof($is_reply);
@@ -445,6 +448,7 @@ class Home extends CI_Controller
 
 			        		$user = $this->user_model->get($sender_id);
 
+			        		$data['reply_to_id'] = $user[0]['user_id'];
 			        		$data['reply_school'] = $user[0]['user_school'];
 			        		$data['reply_department'] = $user[0]['user_department'];
 			        		$data['reply_nickname'] = $user[0]['user_nickname'];
@@ -460,7 +464,7 @@ class Home extends CI_Controller
 
 							$this->load->view('index/twenty_head');
 							$this->load->view('index/pick_bottle_me_res',$data);		
-							$this->load->view('index/pick_bottlejs',$data);		
+							$this->load->view('index/pick_bottle_mejs',$data);		
 							$this->load->view('index/twenty_footer');
 
 

@@ -28,12 +28,6 @@
 
 	});
 
-if(<?php echo $waiting_reply?> == 1){
-	$('#response_form').hide();
-}
 
-if(<?php echo $is_reply?> == 0){
-	alertify.error("您撿到了<?php echo $reply_nickname?>的瓶中信，給他一點回應吧！");
-}
 
 	</script>

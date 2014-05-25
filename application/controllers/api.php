@@ -268,7 +268,7 @@ class Api extends CI_Controller
             $reply_data = array(
                 'reply_sender_id' => $user_id,
                 'reply_story_id' => $story_id,
-                'reply_to_id' => $reply_to_id,
+                'reply_to_id' => $post_data['reply_to_id'],
                 'reply_text' => $post_data['response_content'],
                 'reply_time' => date("Y-m-d H:i:s")
                 );
@@ -291,8 +291,13 @@ class Api extends CI_Controller
         if(sizeof($story) == 0){
             redirect('pick/code_err');
         }
-        $sender_id = $story[0]['story_user_id'];
 
+        $is_picked = $this->pick_model->get(array('pick_picker_id' => $user_id, 'pick_story_id' => $story[0]['story_id']));
+        if(sizeof($is_picked)>0){
+            redirect('pick/code_err');
+        }        
+
+        $sender_id = $story[0]['story_user_id'];
         $pick_data = array(
             'pick_sender_id' => $sender_id,
             'pick_picker_id' => $user_id,

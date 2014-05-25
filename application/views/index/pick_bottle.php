@@ -78,6 +78,7 @@
 										<form id="response_form" method="post" action="/api/story_response">
 											<div class="" style="margin-bottom:1em;">
 												<input type="hidden" name="story_id" value="<?php echo $story['story_id'];?>">
+												<input type="hidden" name="reply_to_id" value="<?php echo $story['story_user_id'];?>">
 												<textarea class="story_footer letter-content" name="response_content" id="response_content" rows="5" placeholder="To <?php echo $user_nickname?>，我..."></textarea>
 											</div>
 											<div style="text-align:center">

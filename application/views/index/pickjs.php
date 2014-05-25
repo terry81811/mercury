@@ -3,7 +3,7 @@
 	    $('#banner').height(vph);
 
 	    if(<? echo $err?> == 1){
-			alertify.error("代碼錯誤，請重新輸入");
+			alertify.error("代碼錯誤或重複領取，請重新輸入");
 	    }
 
 

@@ -12,7 +12,7 @@
 							<ul>
 								<li><a href="/write_story">寫故事</a></li>
 								<li><a href="/pick">撿瓶子</a></li>
-								<li><a href="/my_story">屬於我的故事</a></li>
+								<li><a href="/my_bottles">屬於我的故事</a></li>
 								<li><a href="/bottles">我撿過的瓶子</a></li>
 							</ul>
 						</li>

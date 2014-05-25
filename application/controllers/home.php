@@ -144,6 +144,27 @@ class Home extends CI_Controller
 		$this->load->view('index/twenty_footer');
 	}
 
+	public function my_bottles()
+	{
+		$user_id = $this->_require_login();
+		$user = $this->_get_user_byid($user_id);
+		$data['user_name'] = $user[0]['user_name'];
+		$data['user_nickname'] = $user[0]['user_nickname'];
+
+		$stories = $this->story_model->get(array('story_user_id' => $user_id));
+
+			$data['fb_login_url'] = $this->_fb_login_url();	
+			$data['login_logout_url'] = '/api/logout';	
+        	$data['login_logout_text'] = 'Sign Out';	
+
+
+		$data['stories'] = $stories;
+		$this->load->view('index/twenty_head');
+		$this->load->view('index/my_bottles',$data);		
+		$this->load->view('index/twenty_footer');
+	}
+
+
 	public function register()
 	{
 		$user_id = $this->_require_login();
@@ -254,6 +275,8 @@ class Home extends CI_Controller
 
         		//看使用者是否回應過
         		$waiting_reply = 0;
+				$reply_id_limit = 0;
+				$opposite_reply_id = 0;
         		$is_reply = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_sender_id' => $user_id));
 
         		//get largest reply_id replied by user
@@ -265,10 +288,11 @@ class Home extends CI_Controller
 	        		
 	        		if(sizeof($opposite_reply) > 0){
 		        		$opposite_reply_id = $opposite_reply[sizeof($opposite_reply) - 1]['reply_id'];
-		        		if($reply_id_limit > $opposite_reply_id){
-		        			$waiting_reply = 1;
-		        		}
 	        		}
+	        		if($reply_id_limit > $opposite_reply_id){
+	        			$waiting_reply = 1;
+	        		}
+
         		}
 
         		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));

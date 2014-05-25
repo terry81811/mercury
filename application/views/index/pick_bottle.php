@@ -83,7 +83,6 @@
 											<div style="text-align:center">
 
 												<ul class="buttons">
-													<li><a href="#" class="small button">取消</a></li>
 													<li><a href="#" id="pick_response" class="small button">回覆</a>	</li>
 												</ul>
 											</div>

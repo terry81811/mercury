@@ -324,7 +324,7 @@ class Api extends CI_Controller
 
         $is_picked = $this->pick_model->get(array('pick_picker_id' => $user_id, 'pick_story_id' => $user[0]['user_today_story_id']));
         if(sizeof($is_picked)>0){
-            redirect('pick');
+            redirect('bottles/'.$user[0]['user_today_story_id']);
         }
 
         $story = $this->story_model->get($user[0]['user_today_story_id']);

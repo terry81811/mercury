@@ -425,9 +425,6 @@ class Home extends CI_Controller
     		redirect('/bottles/'.$story_id);			
 		}
 
-
-
-
         					$replies = array();
 			        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
 			        		foreach ($all_replies as $_key => $reply) {
@@ -445,6 +442,12 @@ class Home extends CI_Controller
 				        			}
 			        			}
 			        		}
+
+			        		$user = $this->user_model->get($sender_id);
+
+			        		$data['reply_school'] = $user[0]['user_school'];
+			        		$data['reply_department'] = $user[0]['user_department'];
+			        		$data['reply_nickname'] = $user[0]['user_nickname'];
 
 			        		$user = $this->user_model->get($user_id);
 			        		

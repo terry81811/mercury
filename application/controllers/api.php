@@ -106,13 +106,19 @@ class Api extends CI_Controller
                 }
                 else
                 {
+                    $stories = $this->story_model->get();
+
+                    $story_key = array_rand($stories, 1);
+                    $story = $stories[$story_key];
+
                 	$user_data = array(
                 		'user_name' => $data['user_profile']['name'],
 			            'user_fbid' => $data['user_profile']['id'],
 			            'user_email' => $data['user_profile']['email'],
                         'user_gender' => $data['user_profile']['gender'],
 			            'user_reg_time' => date("Y-m-d H:i:s"),
-			            'user_update_time' => date("Y-m-d H:i:s")
+			            'user_update_time' => date("Y-m-d H:i:s"),
+                        'user_today_story_id' => $story['story_id']
 			            );
 
                 	$user_fbid = $data['user_profile']['id'];
@@ -198,7 +204,7 @@ class Api extends CI_Controller
             );
 
         $result = $this->user_model->update($user_data, $user_id);
-        redirect('/write_story');
+        redirect('/');
 
     }
 

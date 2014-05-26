@@ -10,6 +10,8 @@
 	<h2>使用人數：</h2>
 	<h4>男：<?php echo $male_count;?> 女：<?php echo $female_count;?></h4>
 
+		<form action="/admin_api/story_type_change" method="post">
+			<button class="btn btn-primary" type="submit">送出更改</button>
 	    <table class="table table-condensed" style="margin-bottom:0px;">
 		<tr>
 			<td width='5%'>筆名</td>
@@ -17,8 +19,8 @@
 			<td width='20%'>內容</td>
 			<td width='5%'>對應code</td>
 			<td width='10%'>送出時間</td>
+			<td width='10%'>無效（勾選更改）</td>
 		</tr>
-		<pre>
 	    			<?php
 						foreach ($stories as $_key => $story) {
 							echo "<tr>";
@@ -27,11 +29,18 @@
 							echo "<td>".$story['story_content']."</td>";
 							echo "<td>".$story['story_code']."</td>";
 							echo "<td>".$story['story_time']."</td>";
-							echo "</tr>";
-						}
-	    			?>
-</pre>
-		</table>
+							?>
+					<td>
+						<label class="checkbox-inline">
+						  <input type="checkbox" id="inlineCheckbox1" name="story_type_change[]" value="<?php echo $story['story_id'];?>"><?php echo $story['story_type']; ?> 
+						</label>
+					</td>
+				</tr>
+						<?php }	?>
 
+
+		</table>
+			<button class="btn btn-primary" type="submit">送出更改</button>
+		</form>
 
 	</div>

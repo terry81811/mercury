@@ -35,16 +35,34 @@ class Admin_api extends CI_Controller
 
     //---------------------------------------------------------------------------------------------------
 
+    public function story_type_change()
+    {
+        $post_data = $this->input->post(NULL, TRUE);
+        $story_type_change = $post_data['story_type_change'];
+
+        foreach ($story_type_change as $_key => $story_id) {
+            $story = $this->story_model->get($story_id);
+            if($story[0]['story_type'] == 0){
+                $this->story_model->update(array('story_type' => 1),$story_id);
+            }else{
+                $this->story_model->update(array('story_type' => 0),$story_id);
+            }
+        }
+        redirect('/mercury_db_story');
+
+    }
+
+
     //update today story
     public function today_stories()
     {
-        $stories = $this->story_model->get();
+        $stories = $this->story_model->get(array('story_type' => 0));
         shuffle($stories);
 
         $users = $this->user_model->get();
         foreach ($users as $_key => $user) {
             if(sizeof($stories) == 0){
-                $stories = $this->story_model->get();
+                $stories = $this->story_model->get(array('story_type' => 0));
                 shuffle($stories);
             }
 

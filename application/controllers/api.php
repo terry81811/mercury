@@ -106,7 +106,7 @@ class Api extends CI_Controller
                 }
                 else
                 {
-                    $stories = $this->story_model->get();
+                    $stories = $this->story_model->get(array('story_type' => 0));
 
                     $story_key = array_rand($stories, 1);
                     $story = $stories[$story_key];

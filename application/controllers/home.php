@@ -657,9 +657,14 @@ class Home extends CI_Controller
 		$stories = $this->story_model->get();
 
 		foreach ($stories as $_key => $story) {
+			$replies = $this->reply_model->get(array('reply_story_id' => $story['story_id']));
+			$picks = $this->pick_model->get(array('pick_story_id' => $story['story_id']));
+
 			$story_writer = $this->user_model->get($story['story_user_id']);
 			$stories[$_key]['story_writer'] = $story_writer[0]['user_name'];
 			$stories[$_key]['story_writer_nickname'] = $story_writer[0]['user_nickname'];
+			$stories[$_key]['story_reply_num'] = sizeof($replies);
+			$stories[$_key]['story_pick_num'] = sizeof($picks);
 		}
 
 		$data['stories'] = $stories;

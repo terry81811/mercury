@@ -16,7 +16,9 @@
 		<tr>
 			<td width='5%'>筆名</td>
 			<td width='15%'>主旨</td>
-			<td width='20%'>內容</td>
+			<td width='25%'>內容</td>
+			<td width='5%'>撿起數</td>
+			<td width='5%'>回應數</td>
 			<td width='5%'>對應code</td>
 			<td width='10%'>送出時間</td>
 			<td width='10%'>無效（勾選更改）</td>
@@ -27,6 +29,8 @@
 							echo "<td>".$story['story_writer_nickname']."</td>";
 							echo "<td>".$story['story_subject']."</td>";
 							echo "<td>".$story['story_content']."</td>";
+							echo "<td>".$story['story_pick_num']."</td>";
+							echo "<td>".$story['story_reply_num']."</td>";
 							echo "<td>".$story['story_code']."</td>";
 							echo "<td>".$story['story_time']."</td>";
 							?>

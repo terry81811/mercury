@@ -14,6 +14,7 @@
 			<button class="btn btn-primary" type="submit">送出更改</button>
 	    <table class="table table-condensed" style="margin-bottom:0px;">
 		<tr>
+			<td width='5%'>ID</td>
 			<td width='5%'>筆名</td>
 			<td width='15%'>主旨</td>
 			<td width='25%'>內容</td>
@@ -26,6 +27,7 @@
 	    			<?php
 						foreach ($stories as $_key => $story) {
 							echo "<tr>";
+							echo "<td>".$story['story_id']."</td>";
 							echo "<td>".$story['story_writer_nickname']."</td>";
 							echo "<td>".$story['story_subject']."</td>";
 							echo "<td>".$story['story_content']."</td>";

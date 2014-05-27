@@ -97,7 +97,7 @@
 							</div>
 						</div>
 							<ul class="buttons">
-								<li><a href="<?php  echo "$fb_login_url"; ?>" class="button">寫下我的故事</a></li>
+								<li><a href="<?php  echo "$fb_login_url"; ?>" class="button">登入</a></li>
 							</ul>
 					</section>
 					

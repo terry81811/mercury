@@ -105,6 +105,7 @@
 							</div>
 						</div>
 							<ul class="buttons">
+								<li><a href="/pick" class="button">撿別人的瓶中信</a></li>
 								<li><a href="<?php  echo "$fb_login_url"; ?>" class="button">寫下我的故事</a></li>
 							</ul>
 					</section>

@@ -29,6 +29,7 @@
 					
 						<!-- Content -->
 							<div class="content">
+								<h3>簡單的註冊，開始使用Mercury瓶中信</h3>
 								<form id="register_form" method="post" action="/api/register">
 
 									<div class="row half">

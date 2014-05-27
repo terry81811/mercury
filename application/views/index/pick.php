@@ -47,7 +47,7 @@
 										</div>
 										<div class="6u">
 											<section>
-												<a href="#" id="enter_code_btn"><span style="color:white;" class="icon fa-5x fa-bars"></span></a>
+												<a href="#" id="enter_code_btn"><span style="color:white;" class="icon fa-5x fa-pencil-square"></span></a>
 												<header>
 													<h3><a href="#" id="enter_code">輸入實體漂流瓶代碼</a></h3>
 												</header>

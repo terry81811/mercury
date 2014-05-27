@@ -204,7 +204,7 @@ class Api extends CI_Controller
             );
 
         $result = $this->user_model->update($user_data, $user_id);
-        redirect('/');
+        redirect('/pick');
 
     }
 

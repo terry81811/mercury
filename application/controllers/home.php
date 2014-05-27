@@ -635,6 +635,14 @@ class Home extends CI_Controller
 		$female = $this->user_model->get(array('user_gender' => 'female'));
 
 		$users = $this->user_model->get();
+		foreach ($users as $_key => $user) {
+			$stories = $this->story_model->get(array('story_user_id' => $user['user_id']));
+			$users[$_key]['stories'] = sizeof($stories);
+			$replies = $this->reply_model->get(array('reply_sender_id' => $user['user_id']));
+			$users[$_key]['replies'] = sizeof($replies);
+			$replies_to = $this->reply_model->get(array('reply_to_id' => $user['user_id']));
+			$users[$_key]['replies_to'] = sizeof($replies_to);
+		}
 		usort($users, function($a, $b) {
 		    return $b['user_login_count'] - $a['user_login_count'];
 		});

@@ -12,24 +12,28 @@
 
 	    <table class="table table-condensed" style="margin-bottom:0px;">
 		<tr>
+			<td width='4%'>ID</td>
 			<td width='10%'>登入次數</td>
 			<td width='10%'>姓名</td>
 			<td width='10%'>學校</td>
 			<td width='10%'>系級</td>
-			<td width='10%'>送出公海</td>
-			<td width='10%'>回應公海</td>
+			<td width='10%'>送出故事</td>
+			<td width='10%'>回應數</td>
+			<td width='10%'>被回應</td>
 			<td width='10%'>最後上線</td>
 		</tr>
 		<pre>
 	    			<?php
 						foreach ($users as $_key => $user) {
 							echo "<tr>";
+							echo "<td>".$user['user_id']."</td>";
 							echo "<td>".$user['user_login_count']."</td>";
 							echo "<td>".$user['user_name']."</td>";
 							echo "<td>".$user['user_school']."</td>";
 							echo "<td>".$user['user_department']."</td>";
-							echo "<td>".'0'."</td>";
-							echo "<td>".'0'."</td>";
+							echo "<td>".$user['stories']."</td>";
+							echo "<td>".$user['replies']."</td>";
+							echo "<td>".$user['replies_to']."</td>";
 							echo "<td>".$user['user_update_time']."</td>";
 							echo "</tr>";
 						}

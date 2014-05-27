@@ -38,7 +38,7 @@
 					<p style="font-style:italic; font-size:16px;"><br>有<?php echo $users_count+90;?>個人在Mercury寫下他們的故事</p>
 					<footer>
 						<ul class="buttons vertical">
-							<li><a href="<?php  echo "$fb_login_url"; ?>" class="button fit scrolly">寫下我的故事</a></li>
+							<li><a href="<?php  echo "$fb_login_url"; ?>" class="button fit scrolly">登入</a></li>
 						</ul>
 					</footer>
 				

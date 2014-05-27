@@ -104,9 +104,9 @@ class Home extends CI_Controller
         $this->_require_register();
 
 		$user = $this->_get_user_byid($user_id);
-
 		$data['user_name'] = $user[0]['user_name'];
-		$data['login_logout_url'] = '/api/logout';	
+			$data['login_logout_url'] = '/api/logout';	
+        	$data['login_logout_text'] = 'Sign Out';	
 
 		$this->load->view('index/twenty_head');
 		$this->load->view('index/story_sent',$data);

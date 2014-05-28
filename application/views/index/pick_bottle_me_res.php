@@ -64,7 +64,6 @@
 										<?php echo $reply['reply_text'] ?>
 										<br>
 										<span style="font-size:13px; font-weight:300;">
-										<?php echo $reply['user_school'].' '.$reply['user_department'].' ';?>
 										<?php echo $reply['user_nickname'].' '.date("m-d H:i",strtotime($reply['reply_time']))?>
 										</span>
 									</p>

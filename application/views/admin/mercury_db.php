@@ -13,13 +13,14 @@
 	    <table class="table table-condensed" style="margin-bottom:0px;">
 		<tr>
 			<td width='4%'>ID</td>
-			<td width='10%'>登入次數</td>
+			<td width='5%'>登入次數</td>
 			<td width='10%'>姓名</td>
 			<td width='10%'>學校</td>
 			<td width='10%'>系級</td>
-			<td width='10%'>送出故事</td>
-			<td width='10%'>回應數</td>
-			<td width='10%'>被回應</td>
+			<td width='5%'>送出故事</td>
+			<td width='5%'>撿起故事</td>
+			<td width='5%'>回應數</td>
+			<td width='5%'>被回應</td>
 			<td width='10%'>最後上線</td>
 		</tr>
 		<pre>
@@ -32,6 +33,7 @@
 							echo "<td>".$user['user_school']."</td>";
 							echo "<td>".$user['user_department']."</td>";
 							echo "<td>".$user['stories']."</td>";
+							echo "<td>".$user['picks']."</td>";
 							echo "<td>".$user['replies']."</td>";
 							echo "<td>".$user['replies_to']."</td>";
 							echo "<td>".$user['user_update_time']."</td>";

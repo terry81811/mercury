@@ -638,6 +638,8 @@ class Home extends CI_Controller
 		foreach ($users as $_key => $user) {
 			$stories = $this->story_model->get(array('story_user_id' => $user['user_id']));
 			$users[$_key]['stories'] = sizeof($stories);
+			$picks = $this->pick_model->get(array('pick_picker_id' => $user['user_id']));
+			$users[$_key]['picks'] = sizeof($picks);
 			$replies = $this->reply_model->get(array('reply_sender_id' => $user['user_id']));
 			$users[$_key]['replies'] = sizeof($replies);
 			$replies_to = $this->reply_model->get(array('reply_to_id' => $user['user_id']));

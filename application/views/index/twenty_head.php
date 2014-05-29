@@ -13,7 +13,7 @@
 
 
 			<meta property="og:title" content="Mercury瓶中信" /> 
-		  <meta property="og:image" content="../assets/img/logo.png" /> 
+		  <meta property="og:image" content="http://54.238.194.175/mercury/assets/img/logo.png" /> 
 		  <meta property="og:description" content="據說，有一片Mercury海。把你的心事、秘密放入瓶中，投進海裡，就可以收到回信。你不知道信從何而來，也不知道瓶子飄向何處... ”" /> 
 		  <meta property="og:url" content="http://mercury.so">
 

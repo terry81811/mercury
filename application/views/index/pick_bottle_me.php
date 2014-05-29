@@ -64,7 +64,7 @@
 										<?php echo $reply['reply_text'] ?>
 										<br>
 										<span style="font-size:13px; font-weight:300;">
-										<?php echo $reply['user_nickname'].'-'.$reply['user_school'].' '.$reply['user_department'];?>
+										<?php echo $reply['user_nickname'];?>
 										<?php echo ' '.date("m-d H:i",strtotime($reply['reply_time']))?>
 										<a href="/bottles_reply/<?php echo $story['story_id']."?sender_id=".$reply['reply_sender_id']?>">回覆<?php echo $reply['user_nickname']?></a>
 										</span>

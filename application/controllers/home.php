@@ -371,18 +371,12 @@ class Home extends CI_Controller
 
 		        		else{
 
-			        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
-			        		$replies = $all_replies;
-
-			        		foreach ($replies as $_key => $reply) {
-				        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
-				        			$replies[$_key]['user_nickname'] = $reply_sender[0]['user_nickname'];
-									$replies[$_key]['is_send'] = false;
-			        		}
-			        		$data['reply_nickname'] = $reply_nickname;
+			        		$replies = array();
 
 			        		$data['waiting_reply'] = $waiting_reply;
 			        		$data['is_reply'] = sizeof($is_reply);
+
+			        		$data['reply_nickname'] = $reply_nickname;
 			        		$data['replies'] = $replies;
 
 			        		$data['user_school'] = $sender[0]['user_school'];

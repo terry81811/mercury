@@ -62,14 +62,33 @@ class Admin_api extends CI_Controller
         $users = $this->user_model->get();
         foreach ($users as $_key => $user) {
             if(sizeof($stories) == 0){
+                echo "no more stories orz<br>";
                 $stories = $this->story_model->get(array('story_type' => 0));
                 shuffle($stories);
             }
+            echo "giving story ID:".$stories[0]['story_id']." to user ID:".$user['user_id'];
 
             if($stories[0]['story_id'] != $user['user_today_story_id']){
-                $story = array_shift($stories);
-                $this->user_model->update(array('user_today_story_id' => $story['story_id']),$user['user_id']);
+
+                $counter = 0;
+                while($stories[$counter]['story_user_id'] == $user['user_id']){
+                    echo "my own STORY!<br>";
+                    $counter ++;
+                }
+
+                if($counter == 0){
+                    echo "not my story<br>";
+                    $story = array_shift($stories);
+                    $this->user_model->update(array('user_today_story_id' => $story['story_id']),$user['user_id']);
+                }else{
+                    echo "my story round + ".$counter."<br>";
+                    $story = $stories[$counter];
+                    $this->user_model->update(array('user_today_story_id' => $story['story_id']),$user['user_id']);
+                }
+
+
             }else{
+                echo "YESTERDAY!<BR>";
                 $story_key = array_rand($stories, 1);
                 $story = $stories[$story_key];
                 $this->user_model->update(array('user_today_story_id' => $story['story_id']),$user['user_id']);

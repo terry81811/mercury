@@ -291,6 +291,8 @@ class Home extends CI_Controller
 
 			        		}
 
+			        		$replies = array_reverse($replies);
+
 			        		$user = $this->user_model->get($user_id);
 			        		
 			        		$data['user_school'] = $user[0]['user_school'];

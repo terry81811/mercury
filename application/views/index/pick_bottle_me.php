@@ -53,8 +53,12 @@
 							<div id="letter-background" class="content wrapper style2 special container small" style="margin:1em auto;">
 									<div class="row half">
 										<div class="12u">
-
 								<?php
+
+									if($reply['new_reply'] > 0){
+										echo '<span class="" style="font-size:16px; font-weight:300; color:rgb(100,100,70)">  <i class="fa fa-envelope"></i> New </span>';
+									}
+
 									if($reply['is_send'] == true){
 										echo '<p class="story_footer letter-content" style="text-align:right;">';
 									}else{										

@@ -37,6 +37,10 @@
 						<!-- Content -->
 						<div class="12u">
 				<?php	
+						if(sizeof($story['new_reply']) > 0){
+							echo '<span class="" style="font-size:16px; font-weight:300; color:rgb(100,100,70)">  <i class="fa fa-envelope"></i> New </span>';
+						}
+
 						echo '<p class="story_content letter-content limit-letter-content">'.str_replace("\n","<br>",$story['story_content']).'</p>';?>
 								<span class="letter-content" style="font-size:13px; font-weight:300;">
 								<a href="/bottles/<?php echo $story['story_id']?>">看完整內容與回覆...</a></span>		

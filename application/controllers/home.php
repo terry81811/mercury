@@ -60,6 +60,122 @@ class Home extends CI_Controller
     }
 
 	//---------------------------------------------------------------------------------------------------
+	//	General private function
+	//---------------------------------------------------------------------------------------------------
+
+    public function notification_picker($user_id = null)
+    {
+    	$noti_picker = 0;
+    	$pick_stories = $this->pick_model->get(array('pick_picker_id' => $user_id));
+    	$pick_stories_to_reply = array();
+    	foreach ($pick_stories as $_key => $story) {
+    		$has_to_reply = $this->picker_has_to_reply($user_id,$story['pick_story_id']);
+    		if($has_to_reply != 0){
+    			$noti_picker ++;
+    		}
+    	}
+//    	echo $noti_picker;
+    	return $noti_picker;
+    }
+
+    public function notification_owner($user_id = null)
+    {
+    	$noti_owner = 0;
+    	$own_stories = $this->story_model->get(array('story_user_id' => $user_id));
+    	$own_stories_to_reply = array();
+    	foreach ($own_stories as $_key => $story) {
+    		$has_to_reply = $this->owner_has_to_reply($user_id,$story['story_id']);
+    		if(sizeof($has_to_reply) != 0){
+    			$noti_owner++;
+    		}
+    	}
+
+//    	echo $noti_owner;
+    	return $noti_owner;
+    }
+
+
+    //check if the user has the oppurtunity to reply, return reply_to_id
+    public function owner_has_to_reply_to_user($user_id = null, $story_id = null, $reply_to_id = null)
+    {
+		$reply_from_other = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_sender_id' => $reply_to_id));
+		$reply_from_owner = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_sender_id' => $user_id, 'reply_to_id' => $reply_to_id));
+		//print_r($my_reply);
+		//信的主人根本沒被回過
+		if(sizeof($reply_from_other) == 0){
+			return 0;
+		}
+		//信的主人根本沒回過
+		else if(sizeof($reply_from_owner) == 0){
+			return 1;
+		}
+		//信的主人回應比較小
+		else if($reply_from_owner[sizeof($reply_from_owner)-1]['reply_id'] < $reply_from_other[sizeof($reply_from_other)-1]['reply_id'])
+		{
+			return 1;
+		}
+    }
+
+    public function owner_has_to_reply($user_id = null, $story_id = null)
+	{
+		$_has_to_reply_list = array();
+		//確認該故事是否是使用者的
+		$story = $this->story_model->get($story_id);
+		if($story[0]['story_user_id'] == $user_id){
+			$reply_to_me = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_to_id' => $user_id));
+			foreach ($reply_to_me as $_key => $reply) {
+				$my_reply = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_to_id' => $reply['reply_sender_id']));
+				//print_r($my_reply);
+				//信的主人根本沒回過
+				if(sizeof($my_reply) == 0){
+					$_has_to_reply_list[] = $reply['reply_sender_id'];
+				}
+
+				//信的主人最後一封回信的id比較小
+				else if($reply['reply_id'] > $my_reply[sizeof($my_reply)-1]['reply_id']){
+					$_has_to_reply_list[] = $reply['reply_sender_id'];					
+				}
+
+			}
+//			print_r($_has_to_reply_list);
+			return $_has_to_reply_list;
+		}
+	}
+
+    public function picker_has_to_reply($user_id = null, $story_id = null)
+	{
+		$story = $this->story_model->get($story_id);
+		//確認使用者是否撿過該封信
+		$_is_picked = $this->pick_model->get(array('pick_story_id' => $story_id, 'pick_picker_id' => $user_id));
+		if(sizeof($_is_picked) > 0){
+
+			$reply = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_sender_id' => $user_id));
+
+			//減到的人根本沒回過
+			if(sizeof($reply) == 0){
+//				echo "I did not reply at all <br>";
+//				echo $story[0]['story_user_id'];
+				return $story[0]['story_user_id'];
+			}else{
+				$owner_reply = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_to_id' => $user_id));
+
+				//信的主人根本沒回過
+				if(sizeof($owner_reply) == 0){
+//					echo "Owner did not reply at all <br>";
+					return 0;
+
+				}
+				//信的主人最後一封回信的id比較大
+				else if($reply[sizeof($reply)-1]['reply_id'] < $owner_reply[sizeof($owner_reply)-1]['reply_id']){
+//					echo "wait for my reply <br>";
+//					echo $story[0]['story_user_id'];
+					return $story[0]['story_user_id'];
+				}				
+			}
+		}
+	}
+	
+	//---------------------------------------------------------------------------------------------------
 	//	FIRST Campaign
 	//---------------------------------------------------------------------------------------------------
 
@@ -84,6 +200,9 @@ class Home extends CI_Controller
 			$user = $this->_get_user_byid($user_id);
 			$data['user_name'] = $user[0]['user_name'];
 
+        	$data['notification_owner'] = $this->notification_owner($user_id);
+        	$data['notification_picker'] = $this->notification_picker($user_id);
+
 			$data['fb_login_url'] = '/write_story';	
 			$data['login_logout_url'] = '/api/logout';	
         	$data['login_logout_text'] = 'Sign Out';	
@@ -93,6 +212,7 @@ class Home extends CI_Controller
 
 			$this->load->view('index/twenty_head');
 			$this->load->view('index/test',$data);
+			$this->load->view('index/testjs',$data);
 			$this->load->view('index/twenty_footer');
         }
 	}
@@ -153,6 +273,11 @@ class Home extends CI_Controller
 		$data['user_nickname'] = $user[0]['user_nickname'];
 
 		$stories = $this->story_model->get(array('story_user_id' => $user_id));
+
+		foreach ($stories as $_key => $story) {
+			$new_reply = $this->owner_has_to_reply($user_id, $story['story_id']);
+        	$stories[$_key]['new_reply'] = $new_reply;
+		}
 
 			$data['fb_login_url'] = $this->_fb_login_url();	
 			$data['login_logout_url'] = '/api/logout';	
@@ -260,6 +385,8 @@ class Home extends CI_Controller
         		$story[0]['user_school'] = $user[0]['user_school'];
         		$story[0]['user_department'] = $user[0]['user_department'];
 
+        		$new_reply = $this->picker_has_to_reply($user_id, $_value['pick_story_id']);
+        		$story[0]['new_reply'] = $new_reply;
         		$picked_story[] = $story[0];
         	}
 
@@ -280,6 +407,8 @@ class Home extends CI_Controller
 
 			        		foreach ($all_replies as $_key => $reply) {
 				        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
+
+				        			$reply['new_reply'] = $this->owner_has_to_reply_to_user($user_id,$story_id,$reply['reply_sender_id']);
 				        			$reply['user_nickname'] = $reply_sender[0]['user_nickname'];
 				        			$reply['user_school'] = $reply_sender[0]['user_school'];
 				        			$reply['user_department'] = $reply_sender[0]['user_department'];

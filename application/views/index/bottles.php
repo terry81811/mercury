@@ -31,12 +31,17 @@
 					你不知道信從何而來，也不知道瓶子飄向何處... ”</p>
 				</header>
 
+<?php
+?>
 
 				<?php foreach ($picked_story as $_key => $story) { ?>
 					<section  id="letter-background" class="content wrapper style2 special container small" style="margin:1em auto">	
 						<!-- Content -->
 						<div class="12u">
 				<?php	
+						if($story['new_reply'] > 0){
+							echo '<span class="" style="font-size:16px; font-weight:300; color:rgb(100,100,70)">  <i class="fa fa-envelope"></i> New </span>';
+						}
 						echo '<p class="story_content letter-content limit-letter-content">'.str_replace("\n","<br>",$story['story_content']).'</p>';?>
 								<span class="letter-content" style="font-size:13px; font-weight:300;">
 								<a href="/bottles/<?php echo $story['story_id']?>">繼續閱讀/回覆...</a></span>		

@@ -59,7 +59,7 @@
 		<!-- Footer -->
 					<ul class="buttons">
 						<li><a target="_blank" href="https://www.facebook.com/mercurybottle?fref=ts" class="button special">facebook粉絲頁</a></li>
-						<li><a href="#" class="button">聯絡我們</a></li>
+						<li><a class="button" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" href="http://www.facebook.com/sharer/sharer.php?u=http://mercury.so">分享給FACEBOOK朋友</a>						
 					</ul>
 
 				<span class="copyright">&copy; Mercury. All rights reserved. Design: HTML5 UP</span>				

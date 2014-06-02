@@ -1,6 +1,5 @@
 
 	<body class="index loading">
-	
 		<!-- Header -->
 			<header id="header" class="alt">
 				<h1 id="logo"><a href="/">Mercury <span>瓶中信 </span></a><span class="icon fa-envelope"> 我撿過的瓶子</span></h1>
@@ -62,11 +61,11 @@
 		<!-- Footer -->
 					<ul class="buttons">
 						<li><a target="_blank" href="https://www.facebook.com/mercurybottle?fref=ts" class="button special">facebook粉絲頁</a></li>
-						<li><a href="#" class="button">聯絡我們</a></li>
+						<li><a class="button" target="_blank" onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" href="http://www.facebook.com/sharer/sharer.php?u=http://mercury.so">分享給FACEBOOK朋友</a>						
+</li>
 					</ul>
 
 				<span class="copyright">&copy; Mercury. All rights reserved. Design: HTML5 UP</span>				
-		
 
 			</section>
 		
@@ -76,3 +75,14 @@
 	</script>
 
 	</body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=637028416335513&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+

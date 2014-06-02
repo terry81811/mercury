@@ -434,6 +434,7 @@ class Home extends CI_Controller
 							$this->load->view('index/twenty_head');
 							$this->load->view('index/pick_bottle_me',$data);		
 							$this->load->view('index/pick_bottlejs',$data);		
+							$this->load->view('index/replace_youtubejs',$data);									
 							$this->load->view('index/twenty_footer');
 
         	}
@@ -496,6 +497,7 @@ class Home extends CI_Controller
 							$this->load->view('index/twenty_head');
 							$this->load->view('index/pick_bottle',$data);		
 							$this->load->view('index/pick_bottlejs',$data);		
+							$this->load->view('index/replace_youtubejs',$data);		
 							$this->load->view('index/twenty_footer');
 		        		}
 
@@ -596,6 +598,7 @@ class Home extends CI_Controller
 							$this->load->view('index/twenty_head');
 							$this->load->view('index/pick_bottle_me_res',$data);		
 							$this->load->view('index/pick_bottle_mejs',$data);		
+							$this->load->view('index/replace_youtubejs',$data);									
 							$this->load->view('index/twenty_footer');
 
 

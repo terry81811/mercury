@@ -35,7 +35,7 @@
 									<div class="row half">
 										<div class="12u">
 								<?php	
-										echo '<p class="story_content letter-content">'.str_replace("\n","<br>",$story['story_content']).'</p>';	?>
+										echo '<p class="story_content letter-content letter_text">'.str_replace("\n","<br>",$story['story_content']).'</p>';	?>
 												
 											<p class="story_footer letter-content" style="text-align:right;">
 												<span style="font-size:13px; font-weight:300;">
@@ -56,9 +56,9 @@
 
 								<?php
 									if($reply['is_send'] == true){
-										echo '<p class="story_footer letter-content" style="text-align:right;">';
+										echo '<p class="story_footer letter-content letter_text" style="text-align:right;">';
 									}else{										
-										echo '<p class="story_footer letter-content" style="text-align:left;">';
+										echo '<p class="story_footer letter-content letter_text" style="text-align:left;">';
 									}
 								?>
 										<?php echo $reply['reply_text'] ?>

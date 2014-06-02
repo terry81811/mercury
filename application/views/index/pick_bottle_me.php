@@ -35,7 +35,7 @@
 									<div class="row half">
 										<div class="12u">
 								<?php	
-										echo '<p class="story_content letter-content">'.str_replace("\n","<br>",$story['story_content']).'</p>';	?>
+										echo '<p class="story_content letter-content letter_text">'.str_replace("\n","<br>",$story['story_content']).'</p>';	?>
 												
 											<p class="story_footer letter-content" style="text-align:right;">
 												<span style="font-size:13px; font-weight:300;">												<?php echo $user_nickname.' 於 '.date("m-d-Y",strtotime($story['story_time'])).'<span class="story_code"> #'.$story['story_code'].'</span>'?>

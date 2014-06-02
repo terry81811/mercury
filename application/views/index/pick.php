@@ -35,33 +35,47 @@
 
 
 									<div class="row half">
-										<div class="6u">
+										<div class="4u">
 											<section>
 												<a href="/api/pick_today"><span style="color:white;" class="icon fa-5x fa-envelope"></span></a>
 												<header>
 													<h3><a href="/api/pick_today">撿取今日的瓶中信</a></h3>
 												</header>
-												<p>過了今天，你將再也沒有機會撿到同樣的故事<br></p>
+												<p style="font-size:14px;">過了今天，再也沒有機會撿到同樣的故事</p>
 												
 											</section>
 										</div>
-										<div class="6u">
+
+										<div class="4u">
 											<section>
 												<a href="#" id="enter_code_btn"><span style="color:white;" class="icon fa-5x fa-pencil-square"></span></a>
 												<header>
 													<h3><a href="#" id="enter_code">輸入實體漂流瓶代碼</a></h3>
 												</header>
 														<form id="code_form" action="/api/enter_code" method="post">
-														    <div class="input-group" style="width:70%;margin:auto auto;">
+														    <div class="input-group" style="width:100%;margin:auto auto;">
 														      <input style="background-color:rgba(255,255,255,0.8);color:black" type="text" class="form-control" name="code" placeholde="請輸入code">
 														      <span class="input-group-btn">
 														        <button class="btn btn-default" type="submit"><span style="" class="icon fa-envelope"></span></button>
 														      </span>
 														    </div><!-- /input-group -->
 														</form>
-															<p style="font-size:13px; font-weight:300;">請輸入5/26-30在台大實體瓶中信活動中的信件代碼<br></p>
+															<p style="font-size:13px; font-weight:300;">請輸入5/26-30在實體瓶中信活動中的信件代碼</p>
 											</section>
 										</div>
+										<div class="4u">
+											<section>
+												<a href="/bottles"><span style="color:white;" class="icon fa-5x fa-inbox"></span></a>
+												<header>
+													<h3><a href="/api/pick_today">查看之前的瓶中信</a></h3>
+												</header>
+												<p style="font-size:14px;">過了今天，再也沒有機會撿到同樣的故事</p>
+												
+											</section>
+										</div>
+
+
+
 									</div>
 
 

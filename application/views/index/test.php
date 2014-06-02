@@ -63,7 +63,7 @@
 					<img style="max-width:45px;" src="../assets/img/bottle.png" alt="">
 					<h2>厭倦了過於直接的速食交友？來交筆友吧</h2>
 					<p>或許我們可以先從身邊的朋友開始，透過文字重新認識他們<br>又或者是從生活圈相近但不曾見面的人，同學？同事？朋友的朋友？
-						<br>5/12 - 5/23 <a href="<?php  echo "$fb_login_url"; ?>">寫下你的故事</a>，放入漂流瓶，等待被撿起的那一天</p>
+						<br><a href="<?php  echo "$fb_login_url"; ?>">寫下你的故事</a>，放入漂流瓶，等待被撿起的那一天</p>
 				</header>
 
 				<!-- Two -->
@@ -74,9 +74,9 @@
 								<section>
 									<span class="icon feature fa-pencil"></span>
 									<header>
-										<h3>5/12-23 寫下你的故事</h3>
+										<h3>寫下你的故事</h3>
 									</header>
-									<p>在這裡寫下想說的心情， Mercury就會幫你做成實體瓶中信，傳遞給即將認識的新朋友！只要夠真心誠意，不只能抽到實體禮物，還能收到最溫暖的回應。</p>
+									<p>在這裡寫下任何想說的心情， Mercury就會幫你傳遞您的瓶中信，傳遞給即將認識的新朋友！只要夠真心誠意，就能收到最溫暖的回應。</p>
 								</section>
 							
 							</div>
@@ -85,10 +85,9 @@
 								<section>
 									<span class="icon feature fa-users"></span>
 									<header>
-										<h3>5/26-30 撿起別人的漂流瓶</h3>
+										<h3>撿起別人的漂流瓶</h3>
 									</header>
-									<p>沒寫到信別擔心，
-								來台大活動現場撿起有緣的漂流瓶，再到Mercury網站上給予溫馨或有趣的回應</p>
+									<p>每天都可以撿起一封有緣的漂流瓶，撿起之後給予最真心的回饋。</p>
 								</section>
 							
 							</div>
@@ -99,14 +98,13 @@
 									<header>
 										<h3>用文字經營得來不易的友情</h3>
 									</header>
-									<p>讓瓶子主人挑出最志同道合的回應，互相成為新朋友。Mercury瓶中信將是長久友誼的第一步！</p>
+									<p>讓瓶子主人挑出志同道合的回應，互相聊天成為新朋友。Mercury瓶中信將是長久友誼的第一步！</p>
 								</section>
 							
 							</div>
 						</div>
 							<ul class="buttons">
-								<li><a href="/pick" class="button">撿別人的瓶中信</a></li>
-								<li><a href="<?php  echo "$fb_login_url"; ?>" class="button">寫下我的故事</a></li>
+								<li><a href="/write_story" class="button">寫下我的故事</a></li>
 							</ul>
 					</section>
 					

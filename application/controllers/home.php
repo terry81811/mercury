@@ -716,10 +716,35 @@ class Home extends CI_Controller
 
 
 
+	//---------------------------------------------------------------------------------------------------
+	//	get statistics
+	//---------------------------------------------------------------------------------------------------
 
+	public function story_length()
+	{
+		$stories = $this->story_model->get(array('story_type' => 0));
+		$length = 0;
+		foreach ($stories as $_key => $story) {
+			$length += strlen($story['story_content']);
 
+		}
+		$avg = $length/sizeof($stories);
+		echo $avg."<br>".sizeof($stories);
+		return $avg;
+	}
 
+	public function reply_length()
+	{
+		$replies = $this->reply_model->get();
+		$length = 0;
+		foreach ($replies as $_key => $reply) {
+			$length += strlen($reply['reply_text']);
 
+		}
+		$avg = $length/sizeof($replies);
+		echo $avg."<br>".sizeof($replies);
+		return $avg;
+	}
 
 
 
@@ -823,35 +848,6 @@ class Home extends CI_Controller
 	//---------------------------------------------------------------------------------------------------
 
 
-
-	//---------------------------------------------------------------------------------------------------
-	//test
-	//---------------------------------------------------------------------------------------------------
-
-	public function test_private_send()
-	{
-
-
-	}
-
-
-	public function test_private_receive()
-	{
-		
-
-	}
-
-	public function test_public_send()
-	{
-		
-
-	}
-
-	public function test_public_receive()
-	{
-		
-
-	}
 
 
 

@@ -72,9 +72,9 @@
 								<section>
 									<span class="icon feature fa-pencil"></span>
 									<header>
-										<h3>5/12-23 寫下你的故事</h3>
+										<h3>寫下你的故事</h3>
 									</header>
-									<p>在Mercury網站寫下想說的心事， Mercury會把它變成<strong>實體瓶中信</strong>。寫信不只能抽到實體禮物，還能收到最溫暖的回應。</p>
+									<p>在這裡寫下任何想說的心情， Mercury就會幫你傳遞您的瓶中信，傳遞給即將認識的新朋友！只要夠真心誠意，就能收到最溫暖的回應。</p>
 								</section>
 							
 							</div>
@@ -83,10 +83,9 @@
 								<section>
 									<span class="icon feature fa-users"></span>
 									<header>
-										<h3>5/26-30 撿起別人的瓶中信</h3>
+										<h3>撿起別人的漂流瓶</h3>
 									</header>
-									<p>不論妳有沒有寫信，5/26-30
-								來台大撿起別人的故事，再到Mercury網站上輸入瓶子代號，給予瓶子主人溫馨或有趣的回應</p>
+									<p>每天都可以撿起一封有緣的漂流瓶，撿起之後給予最真心的回饋。</p>
 								</section>
 							
 							</div>
@@ -97,11 +96,14 @@
 									<header>
 										<h3>用文字經營得來不易的友情</h3>
 									</header>
-									<p>瓶子的主人5/26後將可以在Mercury網站上挑出最感動的那一則，互相成為新朋友。Mercury瓶中信將是長久友誼的第一步！</p>
+									<p>讓瓶子主人挑出志同道合的回應，互相聊天成為新朋友。Mercury瓶中信將是長久友誼的第一步！</p>
 								</section>
 							
 							</div>
 						</div>
+							<ul class="buttons">
+								<li><a href="/write_story" class="button">寫下我的故事</a></li>
+							</ul>
 					</section>
 					
 			</article>

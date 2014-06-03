@@ -9,6 +9,7 @@ class Admin_api extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('story_model');
+        $this->load->model('reply_model');
 
         $this->load->library('curl');
     }
@@ -96,6 +97,19 @@ class Admin_api extends CI_Controller
 
         }
 
+    }
+
+    public function story_no_response($limit)
+    {
+        $stories = $this->story_model->get(array('story_type' => 0));
+
+        foreach ($stories as $_key => $story) {
+
+            $is_reply = $this->reply_model->get(array('reply_story_id' => $story['story_id']));
+            if($story['story_id'] < $limit && sizeof($is_reply) == 0){
+                echo " ID: ".$story['story_id']." code: ".$story['story_code']."<br>";
+            }
+        }
     }
 
 

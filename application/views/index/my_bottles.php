@@ -44,10 +44,23 @@
 						echo '<p class="story_content letter-content limit-letter-content">'.str_replace("\n","<br>",$story['story_content']).'</p>';?>
 								<span class="letter-content" style="font-size:13px; font-weight:300;">
 									<?php echo $story['reply_count']."則對話串"?>
-								<a href="/bottles/<?php echo $story['story_id']?>">看完整內容與回覆...</a></span>		
+								<a href="/bottles/<?php echo $story['story_id']?>">看完整內容與回覆...</a>
+							</span>	
+
 							<p class="story_footer letter-content" style="text-align:right;">
-								<?php echo date("m-d-Y",strtotime($story['story_time'])).'<span class="story_code"> #'.$story['story_code'].'<br></span>'?>
-						
+
+								<span class="story_code">
+								<?php echo date("m-d-Y",strtotime($story['story_time'])).'#'. $story['story_code']?>
+								<?php
+									if($story['story_type_admin'] != 2){
+								?>
+								<a class="lock" id="<?php echo $story['story_id'];?>" href="#"><i class="fa fa-lock"></i>封存</a><br></span>
+								<?php
+								}else if($story['story_type_admin'] == 2){									
+								?>
+								<a class="unlock" id="<?php echo $story['story_id'];?>" href="#"><i class="fa fa-unlock"></i>解除封存</a><br></span>
+								<?php } ?>
+
 							</p>
 						</div>							
 					</section>

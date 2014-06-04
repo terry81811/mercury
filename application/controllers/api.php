@@ -432,6 +432,29 @@ class Api extends CI_Controller
 
 
 
+    //---------------------------------------------------------------------------------------------------
+    // public API
+    //---------------------------------------------------------------------------------------------------
+    
+    public function story_lock($story_id)
+    {
+        $user_id = $this->_require_login();
+        $this->_require_register();
+
+        //see if user has the story
+        $is_story_owner = $this->story_model->get(array('story_id' => $story_id, 'story_user_id' => $user_id));
+        if(sizeof($is_story_owner) == 0){
+            redirect('/my_bottles');
+        }else{
+
+            if($is_story_owner[0]['story_type_admin'] == 0){
+                $this->story_model->update(['story_type_admin' => 2 ],$story_id);
+            }else if($is_story_owner[0]['story_type_admin'] == 2){
+                $this->story_model->update(['story_type_admin' => 0 ],$story_id);                
+            }
+            redirect('/my_bottles');            
+        }
+    }
 
 
 

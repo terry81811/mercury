@@ -297,6 +297,7 @@ class Home extends CI_Controller
 		$data['stories'] = $stories;
 		$this->load->view('index/twenty_head');
 		$this->load->view('index/my_bottles',$data);		
+		$this->load->view('index/my_bottlesjs',$data);		
 		$this->load->view('index/twenty_footer');
 	}
 

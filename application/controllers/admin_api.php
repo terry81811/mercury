@@ -57,14 +57,14 @@ class Admin_api extends CI_Controller
     //update today story
     public function today_stories()
     {
-        $stories = $this->story_model->get(array('story_type' => 0));
+        $stories = $this->story_model->get(array('story_type' => 0, 'story_type_admin' => 0));
         shuffle($stories);
 
         $users = $this->user_model->get();
         foreach ($users as $_key => $user) {
             if(sizeof($stories) == 0){
                 echo "no more stories orz<br>";
-                $stories = $this->story_model->get(array('story_type' => 0));
+                $stories = $this->story_model->get(array('story_type' => 0, 'story_type_admin' => 0));
                 shuffle($stories);
             }
             echo "giving story ID:".$stories[0]['story_id']." to user ID:".$user['user_id'];

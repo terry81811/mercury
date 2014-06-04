@@ -277,6 +277,16 @@ class Home extends CI_Controller
 		foreach ($stories as $_key => $story) {
 			$new_reply = $this->owner_has_to_reply($user_id, $story['story_id']);
         	$stories[$_key]['new_reply'] = $new_reply;
+
+			$replies = $this->reply_model->get(array('reply_story_id' => $story['story_id']));
+			$reply_array = array();
+			foreach ($replies as $_reply_key => $reply) {
+				if($reply['reply_sender_id'] != $user_id){
+					$reply_array[$reply['reply_sender_id']] = 1;
+				}
+			}
+
+        	$stories[$_key]['reply_count'] = sizeof($reply_array);        	
 		}
 
 			$data['fb_login_url'] = $this->_fb_login_url();	
@@ -385,6 +395,10 @@ class Home extends CI_Controller
         		$story[0]['user_school'] = $user[0]['user_school'];
         		$story[0]['user_department'] = $user[0]['user_department'];
 
+        		$reply_me = $this->reply_model->get(array('reply_story_id' => $_value['pick_story_id'], 'reply_to_id' => $user_id));
+        		$reply_owner = $this->reply_model->get(array('reply_story_id' => $_value['pick_story_id'], 'reply_sender_id' => $user_id));
+        		$story[0]['reply_count'] = sizeof($reply_me) + sizeof($reply_owner);
+
         		$new_reply = $this->picker_has_to_reply($user_id, $_value['pick_story_id']);
         		$story[0]['new_reply'] = $new_reply;
         		$picked_story[] = $story[0];
@@ -404,6 +418,7 @@ class Home extends CI_Controller
 
 			        		$all_replies = $this->reply_model->get(array('reply_story_id' => $story_id));
 			        		$replies = array();
+			        		$reply_count = array();
 
 			        		foreach ($all_replies as $_key => $reply) {
 				        			$reply_sender = $this->user_model->get($reply['reply_sender_id']);
@@ -418,7 +433,13 @@ class Home extends CI_Controller
 										$replies[$reply['reply_sender_id']] = $reply;
 			        				}
 
+			        				if(array_key_exists($reply['reply_sender_id'], $reply_count)){
+			        					$reply_count[$reply['reply_sender_id']] ++;
+			        				}else{
+			        					$reply_count[$reply['reply_sender_id']] = 1;			        					
+			        				}
 			        		}
+
 
 			        		$replies = array_reverse($replies);
 
@@ -430,6 +451,7 @@ class Home extends CI_Controller
 			        		$data['story'] = $story[0];
 
 			        		$data['replies'] = $replies;
+			        		$data['reply_count'] = $reply_count;
 
 							$this->load->view('index/twenty_head');
 							$this->load->view('index/pick_bottle_me',$data);		

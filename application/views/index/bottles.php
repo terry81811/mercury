@@ -43,7 +43,8 @@
 						}
 						echo '<p class="story_content letter-content limit-letter-content">'.str_replace("\n","<br>",$story['story_content']).'</p>';?>
 								<span class="letter-content" style="font-size:13px; font-weight:300;">
-								<a href="/bottles/<?php echo $story['story_id']?>">繼續閱讀/回覆...</a></span>		
+									<?php echo $story['reply_count']."則回應"?>
+								<a href="/bottles/<?php echo $story['story_id']?>">閱讀/回覆...</a></span>		
 							<p class="story_footer letter-content" style="text-align:right;">
 
 								<?php echo $story['user_nickname'].' 於 '.date("m-d-Y",strtotime($story['story_time'])).'<span class="story_code"> #'.$story['story_code'].'<br></span>'?>

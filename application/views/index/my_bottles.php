@@ -54,11 +54,11 @@
 								<?php
 									if($story['story_type_admin'] != 2){
 								?>
-								<a class="lock" id="<?php echo $story['story_id'];?>" href="#"><i class="fa fa-lock"></i>封存</a><br></span>
+								<a class="lock" id="<?php echo $story['story_id'];?>" href="#"><i class="fa fa-lock"></i>沈入海底</a><br></span>
 								<?php
 								}else if($story['story_type_admin'] == 2){									
 								?>
-								<a class="unlock" id="<?php echo $story['story_id'];?>" href="#"><i class="fa fa-unlock"></i>解除封存</a><br></span>
+								<a class="unlock" id="<?php echo $story['story_id'];?>" href="#"><i class="fa fa-unlock"></i>浮回海面</a><br></span>
 								<?php } ?>
 
 							</p>

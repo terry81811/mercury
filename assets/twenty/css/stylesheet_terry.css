@@ -12,6 +12,15 @@
 	padding: 2em 2em 2em 2em;
 }
 
+#letter-background-2 {
+	border-radius: 5px;
+	margin:auto; padding: 0 0 0 0;
+	background: url(../../img/lines2.png); position: relative;
+	color: black;
+	text-align: left;
+	padding: 2em 2em 2em 2em;
+}
+
 .story_code {
 	font-size: 12px;
 }

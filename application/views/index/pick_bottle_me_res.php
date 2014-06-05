@@ -47,12 +47,16 @@
 								</div><!--raw half-->
 							</div><!--12u-->
 
-							<div id="letter-background" class="content wrapper style2 special container small" style="margin:1em auto;">
-									<div class="row half">
-										<div class="12u">
 							<?php
 								foreach ($replies as $_key => $reply) {
 							?>
+								<?php if($reply['is_send'] == true){ ?>
+									<div id="letter-background-2" class="content wrapper style2 special container small" style="margin:1em auto;">
+								<?php	}else{	?>	
+									<div id="letter-background" class="content wrapper style2 special container small" style="margin:1em auto;">
+								<?php	} ?>
+									<div class="row half">
+										<div class="12u">
 
 								<?php
 									if($reply['is_send'] == true){
@@ -69,11 +73,17 @@
 									</p>
 
 
+
+										</div>	
+									</div>
+							</div>
 								<?php
 									}
 								?>
 
-
+							<div id="letter-background" class="content wrapper style2 special container small" style="margin:1em auto;">
+									<div class="row half">
+										<div class="12u">
 										<form id="response_form" method="post" action="/api/story_response">
 											<div class="" style="margin-bottom:1em;">
 												<input type="hidden" name="story_id" value="<?php echo $story['story_id'];?>">
@@ -87,10 +97,9 @@
 												</ul>
 											</div>
 										</form>
+									
 										</div>	
 									</div>
-
-
 							</div>
 				
 		

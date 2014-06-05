@@ -29,7 +29,7 @@
 	});
 
 if(<?php echo $waiting_reply?> == 1){
-	$('#response_form').hide();
+	$('.response_div').hide();
 }
 
 if(<?php echo $is_reply?> == 0){

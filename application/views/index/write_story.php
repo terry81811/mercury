@@ -53,9 +53,11 @@
 
 									<div class="row">
 										<div class="12u">
-											<ul class="buttons">
+											<ul class="buttons" style="margin-bottom:1px;">
 												<li><a id="story_send_btn" href="#" class="button special">送出漂流瓶</a></li>
 											</ul>
+												<span style="font-size:13px; font-weight:300;">提醒您，閒置過久時系統會自動登出，送出前請先複製信件內容</span>
+
 										</div>
 									</div>
 

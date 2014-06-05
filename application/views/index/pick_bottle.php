@@ -96,9 +96,10 @@
 											</div>
 											<div style="text-align:center">
 
-												<ul class="buttons">
+												<ul class="buttons" style="margin-bottom:1px;">
 													<li><a href="#" id="pick_response" class="small button">回覆</a>	</li>
 												</ul>
+												<span style="font-size:13px; font-weight:300;">提醒您，閒置過久時系統會自動登出，送出前請先複製回覆內容</span>
 											</div>
 										</form>
 

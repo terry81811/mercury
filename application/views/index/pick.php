@@ -35,6 +35,19 @@
 
 
 									<div class="row half">
+
+
+
+										<div class="4u">
+											<section>
+												<a href="/bottles"><span style="color:white;" class="icon fa-5x fa-inbox"></span></a>
+												<header>
+													<h3><a href="/api/pick_today">查看之前的瓶中信</a></h3>
+												</header>
+												<p style="font-size:14px;">遠方的人還在等待你的回應</p>
+												
+											</section>
+										</div>
 										<div class="4u">
 											<section>
 												<a href="/api/pick_today"><span style="color:white;" class="icon fa-5x fa-envelope"></span></a>
@@ -63,18 +76,6 @@
 															<p style="font-size:13px; font-weight:300;">請輸入5/26-30在實體瓶中信活動中的信件代碼</p>
 											</section>
 										</div>
-										<div class="4u">
-											<section>
-												<a href="/bottles"><span style="color:white;" class="icon fa-5x fa-inbox"></span></a>
-												<header>
-													<h3><a href="/api/pick_today">查看之前的瓶中信</a></h3>
-												</header>
-												<p style="font-size:14px;">過了今天，再也沒有機會撿到同樣的故事</p>
-												
-											</section>
-										</div>
-
-
 
 									</div>
 

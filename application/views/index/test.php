@@ -6,6 +6,7 @@
 				<h1 id="logo"><a href="/">Mercury <span>瓶中信 </span></a><span class="icon fa-envelope"> 首頁</span></h1>
 				<nav id="nav">
 					<ul>
+
 						<li class="current"><a href="/">Welcome <?php echo $user_name;?></a></li>
 						<li class="submenu">
 							<a href="">我的Mercury</a>
@@ -17,9 +18,8 @@
 							</ul>
 						</li>
 
-
-
 						<li><a href="<? echo "$login_logout_url"; ?>" class="button special"><?php echo $login_logout_text;?> </a></li>
+
 					</ul>
 				</nav>
 			</header>

@@ -10,6 +10,7 @@ class Admin_api extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('story_model');
         $this->load->model('reply_model');
+        $this->load->model('pick_model');
 
         $this->load->library('curl');
     }
@@ -99,6 +100,77 @@ class Admin_api extends CI_Controller
 
     }
 
+    //update today story
+    public function today_stories_v2($threshold)
+    {
+        $all_stories = $this->story_model->get(array('story_type' => 0, 'story_type_admin' => 0));
+
+        $new_stories = array();
+//        $old_stories = array();
+
+        foreach ($all_stories as $_key => $story) {
+            $pick = $this->pick_model->get(array('pick_story_id' => $story['story_id']));
+            if(sizeof($pick) <= $threshold){
+                $new_stories[] = $story;
+            }
+        }
+
+        echo "sizeof new story = ".sizeof($new_stories)."<br>";
+
+        shuffle($new_stories);
+        $stories = $new_stories;
+
+        $users = $this->user_model->get();
+
+        foreach ($users as $_key => $user) {
+            if(sizeof($stories) == 0){
+                echo "no more new stories orz<br>";
+                $stories = $this->story_model->get(array('story_type' => 0, 'story_type_admin' => 0));
+                shuffle($stories);
+            }
+            echo "giving story ID:".$stories[0]['story_id']." to user ID:".$user['user_id']."<br>";
+
+            $is_picked_array = $this->pick_model->get(array('pick_story_id' => $stories[0]['story_id'], 'pick_picker_id' => $user['user_id']));
+            if(sizeof($is_picked_array) == 0){
+                $is_picked = 0;
+            }else{
+                $is_picked = 1;
+            }
+
+            if($stories[0]['story_user_id'] == $user['user_id']){
+                $is_mine = 1;
+            }else{
+                $is_mine = 0;
+            }
+
+            while($is_picked == 1 || $is_mine == 1){
+                echo "pick = ".$is_picked." # mine = ".$is_mine."shuffle!! <br>";
+                shuffle($stories);                
+
+                $is_picked_array = $this->pick_model->get(array('pick_story_id' => $stories[0]['story_id'], 'pick_picker_id' => $user['user_id']));
+                if(sizeof($is_picked_array) == 0){
+                    $is_picked = 0;
+                }else{
+                    $is_picked = 1;
+                }
+
+                if($stories[0]['story_user_id'] == $user['user_id']){
+                    $is_mine = 1;
+                }else{
+                    $is_mine = 0;
+                }
+                echo "giving story ID:".$stories[0]['story_id']." to user ID:".$user['user_id']."<br>";
+
+            }
+
+            $story = array_shift($stories);
+            $this->user_model->update(array('user_today_story_id' => $story['story_id']),$user['user_id']);
+        }
+
+
+    }
+
+
     public function story_no_response($limit)
     {
         $stories = $this->story_model->get(array('story_type' => 0));
@@ -146,6 +218,26 @@ class Admin_api extends CI_Controller
     }
 
 
+    //---------------------------------------------------------------------------------------------------
+    //  response suggest
+    //---------------------------------------------------------------------------------------------------
+
+    public function response_suggest($suggest_user_id)
+    {
+        $post_data = $this->input->post(NULL, TRUE);
+        $reply_suggestion = $post_data['reply_suggestion'];
+
+        $reply_suggest_data = array(
+            'suggest_user_id' => $suggest_user_id,
+            'suggest_from_user' => 0,
+            'suggest_text' => $reply_suggestion,
+            'suggest_time' => date("Y-m-d H:i:s")
+            );
+
+        $this->suggest_model->insert($suggest_data);
+        redirect('/mercury_db_res');
+
+    }
 
 
 }

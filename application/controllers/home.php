@@ -9,6 +9,7 @@ class Home extends CI_Controller
         $this->load->model('story_model');
         $this->load->model('pick_model');
         $this->load->model('reply_model');
+        $this->load->model('suggest_model');
     }
 
     private function _fb_login_url()
@@ -629,9 +630,30 @@ class Home extends CI_Controller
 
 
 
+	//---------------------------------------------------------------------------------------------------
+	//	SUGGESTION & CONTACT
+	//---------------------------------------------------------------------------------------------------
+
+	public function contact()
+	{
+		$user_id = $this->_require_login();
+        $this->_require_register();
+
+		$user = $this->_get_user_byid($user_id);
+
+		$data['suggestions'] = $this->suggest_model->get(array('suggest_user_id' => $user_id));
+
+		$data['user_name'] = $user[0]['user_name'];
+		$data['fb_login_url'] = $this->_fb_login_url();	
+		$data['login_logout_url'] = '/api/logout';	
+    	$data['login_logout_text'] = 'Sign Out';	
 
 
-
+		$this->load->view('index/twenty_head');
+		$this->load->view('index/contact',$data);		
+		$this->load->view('index/contactjs',$data);		
+		$this->load->view('index/twenty_footer');
+	}
 
 
 
@@ -839,6 +861,16 @@ class Home extends CI_Controller
 		$this->load->view('admin/mercury_mail');
 		$this->load->view('admin/footer');
 	}
+
+	public function mercury_db_res()
+	{
+		$this->_admin_require_login();
+		$suggestions = $this->suggest_model->get();
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/mercury_db_res',$data);
+		$this->load->view('admin/footer');
+	}	
 
 
 	//---------------------------------------------------------------------------------------------------

@@ -15,21 +15,20 @@
 	    <table class="table table-condensed" style="margin-bottom:0px;">
 		<tr>
 			<td width='5%'>ID</td>
-			<td width='5%'>筆名</td>
-			<td width='15%'>主旨</td>
-			<td width='25%'>內容</td>
+			<td width='4%'>筆名</td>
+			<td width='30%'>內容</td>
 			<td width='5%'>撿起數</td>
 			<td width='5%'>回應數</td>
 			<td width='5%'>對應code</td>
 			<td width='10%'>送出時間</td>
-			<td width='10%'>無效（勾選更改）</td>
+			<td width='7%'>無效（更改）</td>
+			<td width='5%'>沉沒</td>
 		</tr>
 	    			<?php
 						foreach ($stories as $_key => $story) {
 							echo "<tr>";
 							echo "<td>".$story['story_id']."</td>";
 							echo "<td>".$story['story_writer_nickname']."</td>";
-							echo "<td>".$story['story_subject']."</td>";
 							echo "<td>".$story['story_content']."</td>";
 							echo "<td>".$story['story_pick_num']."</td>";
 							echo "<td>".$story['story_reply_num']."</td>";
@@ -41,8 +40,11 @@
 						  <input type="checkbox" id="inlineCheckbox1" name="story_type_change[]" value="<?php echo $story['story_id'];?>"><?php echo $story['story_type']; ?> 
 						</label>
 					</td>
+						<?php 
+							echo "<td>".$story['story_type_admin']."</td>";
+
+					}	?>
 				</tr>
-						<?php }	?>
 
 
 		</table>

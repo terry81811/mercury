@@ -11,6 +11,7 @@ class Api extends CI_Controller
         $this->load->model('story_model');
         $this->load->model('pick_model');
         $this->load->model('reply_model');
+        $this->load->model('suggest_model');
 
         $this->load->library('curl');
     }
@@ -348,6 +349,28 @@ class Api extends CI_Controller
         redirect('/bottles/'.$story[0]['story_id']);
 
     }
+
+    //---------------------------------------------------------------------------------------------------
+    // CRUD APIs - SUGGESTIONS
+    //---------------------------------------------------------------------------------------------------
+
+    public function insert_suggestion()
+    {
+        $user_id = $this->_require_login();
+        $this->_require_register();
+        $post_data = $this->input->post(NULL, TRUE);
+
+        $suggestion = $post_data['suggestion'];
+
+        $suggest_data = array(
+            'suggest_user_id' => $user_id,
+            'suggest_text' => $suggestion,
+            'suggest_time' => date("Y-m-d H:i:s")
+            );
+
+        $this->suggest_model->insert($suggest_data);
+        redirect('/contact');
+    }    
 
 
     //---------------------------------------------------------------------------------------------------

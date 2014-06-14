@@ -10,6 +10,7 @@ class Home extends CI_Controller
         $this->load->model('pick_model');
         $this->load->model('reply_model');
         $this->load->model('suggest_model');
+        $this->load->model('admin_model');
     }
 
     private function _fb_login_url()
@@ -817,6 +818,11 @@ class Home extends CI_Controller
 		    return $b['user_login_count'] - $a['user_login_count'];
 		});
 
+
+		$data['story_length'] = $this->story_length();
+		$data['reply_length'] = $this->reply_length();
+
+
 		$data['users'] = $users;
 		$data['male_count'] = sizeof($male);
 		$data['female_count'] = sizeof($female);
@@ -872,10 +878,49 @@ class Home extends CI_Controller
 		$this->load->view('admin/footer');
 	}	
 
+	public function mercury_admin()
+	{
+		$this->_admin_require_login();
+		$admin = $this->admin_model->get(1);
+		$story_update_time = $admin[0]['admin_story_update_time'];
+		$data['story_update_time'] = $story_update_time;
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/mercury_admin',$data);
+		$this->load->view('admin/footer');
+	}	
 
 	//---------------------------------------------------------------------------------------------------
 
 
+
+    //---------------------------------------------------------------------------------------------------
+    //  get statistics
+    //---------------------------------------------------------------------------------------------------
+
+    public function story_length()
+    {
+        $stories = $this->story_model->get(array('story_type' => 0));
+        $length = 0;
+        foreach ($stories as $_key => $story) {
+            $length += strlen($story['story_content']);
+
+        }
+        $avg = $length/sizeof($stories);
+        return $avg;
+    }
+
+    public function reply_length()
+    {
+        $replies = $this->reply_model->get();
+        $length = 0;
+        foreach ($replies as $_key => $reply) {
+            $length += strlen($reply['reply_text']);
+
+        }
+        $avg = $length/sizeof($replies);
+        return $avg;
+    }
 
 
 

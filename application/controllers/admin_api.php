@@ -11,6 +11,7 @@ class Admin_api extends CI_Controller
         $this->load->model('story_model');
         $this->load->model('reply_model');
         $this->load->model('pick_model');
+        $this->load->model('admin_model');
 
         $this->load->library('curl');
     }
@@ -54,55 +55,18 @@ class Admin_api extends CI_Controller
 
     }
 
-
-    //update today story
-    public function today_stories()
+    public function update_stories()
     {
-        $stories = $this->story_model->get(array('story_type' => 0, 'story_type_admin' => 0));
-        shuffle($stories);
-
-        $users = $this->user_model->get();
-        foreach ($users as $_key => $user) {
-            if(sizeof($stories) == 0){
-                echo "no more stories orz<br>";
-                $stories = $this->story_model->get(array('story_type' => 0, 'story_type_admin' => 0));
-                shuffle($stories);
-            }
-            echo "giving story ID:".$stories[0]['story_id']." to user ID:".$user['user_id'];
-
-            if($stories[0]['story_id'] != $user['user_today_story_id']){
-
-                $counter = 0;
-                while($stories[$counter]['story_user_id'] == $user['user_id']){
-                    echo "my own STORY!<br>";
-                    $counter ++;
-                }
-
-                if($counter == 0){
-                    echo "not my story<br>";
-                    $story = array_shift($stories);
-                    $this->user_model->update(array('user_today_story_id' => $story['story_id']),$user['user_id']);
-                }else{
-                    echo "my story round + ".$counter."<br>";
-                    $story = $stories[$counter];
-                    $this->user_model->update(array('user_today_story_id' => $story['story_id']),$user['user_id']);
-                }
-
-
-            }else{
-                echo "YESTERDAY!<BR>";
-                $story_key = array_rand($stories, 1);
-                $story = $stories[$story_key];
-                $this->user_model->update(array('user_today_story_id' => $story['story_id']),$user['user_id']);
-            }
-
-        }
-
+        $post_data = $this->input->post(NULL, TRUE);
+        $threshold = $post_data['threshold'];
+        $this->today_stories_v2($threshold);
     }
 
     //update today story
     public function today_stories_v2($threshold)
     {
+        $this->admin_model->update(array('admin_story_update_time' => date("Y-m-d H:i:s")),1);
+
         $all_stories = $this->story_model->get(array('story_type' => 0, 'story_type_admin' => 0));
 
         $new_stories = array();
@@ -166,10 +130,15 @@ class Admin_api extends CI_Controller
             $story = array_shift($stories);
             $this->user_model->update(array('user_today_story_id' => $story['story_id']),$user['user_id']);
         }
-
-
     }
 
+
+    public function new_stories()
+    {
+        $post_data = $this->input->post(NULL, TRUE);
+        $limit = $post_data['threshold'];
+        $this->story_no_response($limit);
+    }
 
     public function story_no_response($limit)
     {
@@ -184,37 +153,63 @@ class Admin_api extends CI_Controller
         }
     }
 
-
-
-
     //---------------------------------------------------------------------------------------------------
-    //  get statistics
+    //  show email
     //---------------------------------------------------------------------------------------------------
 
-    public function story_length()
+    private function owner_has_to_reply($user_id = null, $story_id = null)
     {
-        $stories = $this->story_model->get(array('story_type' => 0));
-        $length = 0;
-        foreach ($stories as $_key => $story) {
-            $length += strlen($story['story_content']);
+        $_has_to_reply_list = array();
+        //確認該故事是否是使用者的
+        $story = $this->story_model->get($story_id);
+        if($story[0]['story_user_id'] == $user_id){
+            $reply_to_me = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_to_id' => $user_id));
+            foreach ($reply_to_me as $_key => $reply) {
+                $my_reply = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_to_id' => $reply['reply_sender_id']));
+                //print_r($my_reply);
+                //信的主人根本沒回過
+                if(sizeof($my_reply) == 0){
+                    $_has_to_reply_list[] = $reply['reply_sender_id'];
+                }
 
+                //信的主人最後一封回信的id比較小
+                else if($reply['reply_id'] > $my_reply[sizeof($my_reply)-1]['reply_id']){
+                    $_has_to_reply_list[] = $reply['reply_sender_id'];                  
+                }
+
+            }
+            return $_has_to_reply_list;
         }
-        $avg = $length/sizeof($stories);
-        echo $avg."<br>".sizeof($stories);
-        return $avg;
     }
 
-    public function reply_length()
-    {
-        $replies = $this->reply_model->get();
-        $length = 0;
-        foreach ($replies as $_key => $reply) {
-            $length += strlen($reply['reply_text']);
 
+    public function no_res_owner()
+    {
+        $no_res_owner = array();
+
+        $users = $this->user_model->get();
+        foreach ($users as $_key => $user) {
+            $stories_by_user = $this->story_model->get(array('story_user_id' => $user['user_id']));
+            foreach ($stories_by_user as $_story_key => $story) {
+                $has_to_reply = $this->owner_has_to_reply($user['user_id'],$story['story_id']);
+                if(sizeof($has_to_reply) > 0){
+                    $no_res_owner[$user['user_id']] = $user;
+                }
+            }
+            # code...
         }
-        $avg = $length/sizeof($replies);
-        echo $avg."<br>".sizeof($replies);
-        return $avg;
+
+        foreach ($no_res_owner as $_key_user => $user) {
+            echo $user['user_email']."<br>";
+            # code...
+        }
+
+        echo "total: ".sizeof($no_res_owner);
+    }
+
+    public function no_res_user()
+    {
+        
     }
 
 

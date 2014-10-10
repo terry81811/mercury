@@ -2,8 +2,6 @@
 
 class Api extends CI_Controller
 {
-	//---------------------------------------------------------------------------------------------------
-
     public function __construct() 
     {
         parent::__construct();
@@ -70,7 +68,6 @@ class Api extends CI_Controller
 
 	public function login()
 	{
-
 			if($this->session->userdata('user_id')){
                 $user_id = $this->session->userdata('user_id');
                 $user = $this->user_model->get($user_id);
@@ -451,10 +448,6 @@ class Api extends CI_Controller
         $this->confirm_email($order_id,1,1,'terrytsai0811@gmail.com');
     }
 
-
-
-
-
     //---------------------------------------------------------------------------------------------------
     // public API
     //---------------------------------------------------------------------------------------------------
@@ -479,25 +472,16 @@ class Api extends CI_Controller
         }
     }
 
-
-
-
-
-
-
-
 	//---------------------------------------------------------------------------------------------------
 	// Working
 	//---------------------------------------------------------------------------------------------------
 	
-
 	public function api_test()
 	{
 		$this->load->view('template/header_view_general');
 		$this->load->view('home/public_sea_view');
 		$this->load->view('template/footer_view');
 	}
-
 
 	//---------------------------------------------------------------------------------------------------
 

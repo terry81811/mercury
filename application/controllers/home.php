@@ -76,7 +76,6 @@ class Home extends CI_Controller
     			$noti_picker ++;
     		}
     	}
-//    	echo $noti_picker;
     	return $noti_picker;
     }
 
@@ -91,8 +90,6 @@ class Home extends CI_Controller
     			$noti_owner++;
     		}
     	}
-
-//    	echo $noti_owner;
     	return $noti_owner;
     }
 
@@ -139,7 +136,6 @@ class Home extends CI_Controller
 				}
 
 			}
-//			print_r($_has_to_reply_list);
 			return $_has_to_reply_list;
 		}
 	}
@@ -155,22 +151,17 @@ class Home extends CI_Controller
 
 			//減到的人根本沒回過
 			if(sizeof($reply) == 0){
-//				echo "I did not reply at all <br>";
-//				echo $story[0]['story_user_id'];
+
 				return $story[0]['story_user_id'];
 			}else{
 				$owner_reply = $this->reply_model->get(array('reply_story_id' => $story_id, 'reply_to_id' => $user_id));
 
 				//信的主人根本沒回過
 				if(sizeof($owner_reply) == 0){
-//					echo "Owner did not reply at all <br>";
 					return 0;
-
 				}
 				//信的主人最後一封回信的id比較大
 				else if($reply[sizeof($reply)-1]['reply_id'] < $owner_reply[sizeof($owner_reply)-1]['reply_id']){
-//					echo "wait for my reply <br>";
-//					echo $story[0]['story_user_id'];
 					return $story[0]['story_user_id'];
 				}				
 			}
@@ -213,12 +204,11 @@ class Home extends CI_Controller
 			$data['users_count'] = sizeof($users);	
 
 			$this->load->view('index/twenty_head');
-			$this->load->view('index/test',$data);
-			$this->load->view('index/testjs',$data);
+			$this->load->view('index/indexpage',$data);
+			$this->load->view('index/indexpagejs',$data);
 			$this->load->view('index/twenty_footer');
         }
 	}
-
 
 	public function story_sent()
 	{
@@ -656,120 +646,6 @@ class Home extends CI_Controller
 		$this->load->view('index/twenty_footer');
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-	//---------------------------------------------------------------------------------------------------
-	
-	public function page()
-	{
-		$this->_require_login();
-		$this->load->view('template/header_view_general');
-		$this->load->view('home/page_view');
-		$this->load->view('template/footer_view');
-	}
-
-	public function cabin()
-	{
-		$this->_require_login();
-		$this->load->view('template/header_view_general');
-		$this->load->view('home/cabin_view');
-		$this->load->view('template/footer_view');
-	}
-
-	public function store()
-	{
-		$this->_require_login();
-		$this->load->view('template/header_view_general');
-		$this->load->view('home/store_view');
-		$this->load->view('template/footer_view');
-	}
-
-	public function write_public()
-	{
-		$this->_require_login();
-		$this->load->view('template/header_view_general');
-		$this->load->view('home/write_view');
-		$this->load->view('template/footer_view');
-	}
-
-	public function write_private()
-	{
-		$this->_require_login();
-		$this->load->view('template/header_view_general');
-		$this->load->view('home/write_view');
-		$this->load->view('template/footer_view');
-	}
-
-	public function bottle_history()
-	{
-		$this->_require_login();
-		$this->load->view('template/header_view_general');
-		$this->load->view('home/public_sea_view');
-		$this->load->view('template/footer_view');
-	}
-
-	public function private_beach()
-	{
-		$this->_require_login();
-		$this->load->view('template/header_view_general');
-		$this->load->view('home/public_sea_view');
-		$this->load->view('template/footer_view');
-	}
-
-	public function public_sea()
-	{
-		$this->_require_login();
-		$this->load->view('template/header_view_general');
-		$this->load->view('home/public_sea_view');
-		$this->load->view('template/footer_view');
-	}
-
-	public function mercury_how()
-	{
-		$this->_require_login();
-		$this->load->view('template/header_view_general');
-		$this->load->view('home/public_sea_view');
-		$this->load->view('template/footer_view');
-	}
-
-	public function advise_us()
-	{
-		$this->_require_login();
-		$this->load->view('template/header_view_general');
-		$this->load->view('home/public_sea_view');
-		$this->load->view('template/footer_view');
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	//---------------------------------------------------------------------------------------------------
 	//	Internal pages
 	//---------------------------------------------------------------------------------------------------
@@ -921,8 +797,4 @@ class Home extends CI_Controller
         $avg = $length/sizeof($replies);
         return $avg;
     }
-
-
-
-
 }

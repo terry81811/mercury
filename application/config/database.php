@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'terry';
-$db['default']['password'] = 'teammate';
+$db['default']['username'] = 'mercury';
+$db['default']['password'] = 'mercurydb';
 $db['default']['database'] = 'mercury';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
@@ -65,21 +65,21 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
 
-$db['ntugrapa']['hostname'] = 'localhost';
-$db['ntugrapa']['username'] = 'ntugrapa';
-$db['ntugrapa']['password'] = 'ntugrapa2014';
-$db['ntugrapa']['database'] = 'ntugrapa';
-$db['ntugrapa']['dbdriver'] = 'mysql';
-$db['ntugrapa']['dbprefix'] = '';
-$db['ntugrapa']['pconnect'] = TRUE;
-$db['ntugrapa']['db_debug'] = TRUE;
-$db['ntugrapa']['cache_on'] = FALSE;
-$db['ntugrapa']['cachedir'] = '';
-$db['ntugrapa']['char_set'] = 'utf8';
-$db['ntugrapa']['dbcollat'] = 'utf8_general_ci';
-$db['ntugrapa']['swap_pre'] = '';
-$db['ntugrapa']['autoinit'] = TRUE;
-$db['ntugrapa']['stricton'] = FALSE;
+// $db['ntugrapa']['hostname'] = 'localhost';
+// $db['ntugrapa']['username'] = 'ntugrapa';
+// $db['ntugrapa']['password'] = 'ntugrapa2014';
+// $db['ntugrapa']['database'] = 'ntugrapa';
+// $db['ntugrapa']['dbdriver'] = 'mysql';
+// $db['ntugrapa']['dbprefix'] = '';
+// $db['ntugrapa']['pconnect'] = TRUE;
+// $db['ntugrapa']['db_debug'] = TRUE;
+// $db['ntugrapa']['cache_on'] = FALSE;
+// $db['ntugrapa']['cachedir'] = '';
+// $db['ntugrapa']['char_set'] = 'utf8';
+// $db['ntugrapa']['dbcollat'] = 'utf8_general_ci';
+// $db['ntugrapa']['swap_pre'] = '';
+// $db['ntugrapa']['autoinit'] = TRUE;
+// $db['ntugrapa']['stricton'] = FALSE;
 
 
 

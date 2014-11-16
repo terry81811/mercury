@@ -17,7 +17,7 @@
 						</li>
 
 
-						<li><a href="<? echo "$login_logout_url"; ?>" class="button special"><?php echo $login_logout_text;?> </a></li>
+						<li><a href="<?php echo "$login_logout_url"; ?>" class="button special"><?php echo $login_logout_text;?> </a></li>
 					</ul>
 				</nav>
 			</header>

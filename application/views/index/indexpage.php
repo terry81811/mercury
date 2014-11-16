@@ -18,7 +18,7 @@
 							</ul>
 						</li>
 
-						<li><a href="<? echo "$login_logout_url"; ?>" class="button special"><?php echo $login_logout_text;?> </a></li>
+						<li><a href="<?php echo "$login_logout_url"; ?>" class="button special"><?php echo $login_logout_text;?> </a></li>
 
 					</ul>
 				</nav>
@@ -36,7 +36,7 @@
 				<div class="inner">
 					
 <header style="max-width:500px;">
-					<img style="max-width:100%; margin: 0 auto;" src="../assets/img/logo3.png" alt="">
+					<img style="max-width:100%; margin: 0 auto;" src="<?php echo base_url();?>assets/img/logo3.png" alt="">
 </header>
 
 
@@ -60,7 +60,7 @@
 				<header class="special container" style="padding-top:0px;">
 
 
-					<img style="max-width:45px;" src="../assets/img/bottle.png" alt="">
+					<img style="max-width:45px;" src="<?php echo base_url();?>assets/img/bottle.png" alt="">
 					<h2>厭倦了過於直接的速食交友？來交筆友吧</h2>
 					<p>或許我們可以先從身邊的朋友開始，透過文字重新認識他們<br>又或者是從生活圈相近但不曾見面的人，同學？同事？朋友的朋友？
 						<br><a href="<?php  echo "$fb_login_url"; ?>">寫下你的故事</a>，放入漂流瓶，等待被撿起的那一天</p>

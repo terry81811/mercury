@@ -4,7 +4,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-var base_url = '/mercury/';
+var base_url = '/';
 skel.init({
 	reset: 'full',
 	breakpoints: {

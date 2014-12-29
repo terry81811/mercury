@@ -6,7 +6,7 @@
 				<h1 id="logo"><a href="/">Mercury <span>瓶中信</span></a></h1>
 				<nav id="nav">
 					<ul>
-						<li class="current"><a href="/">Welcome</a></li>
+						<li class="current"><a href="<?php echo base_url();?>">Welcome</a></li>
 
 						<?php
 

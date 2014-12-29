@@ -186,7 +186,7 @@ class Home extends CI_Controller
 			$this->load->view('index/index',$data);
 			$this->load->view('index/twenty_footer');
 
-        }else{
+        } else {
 
 			$user_id = $this->_require_login();
 	        $this->_require_register();

@@ -41,6 +41,7 @@
 	
 	    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/alertify/alertify.core.css" />
 	    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/alertify/alertify.default.css" id="toggleCSS" />
+	    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/alertify/alertify.custom.css" />
 
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/twenty/css/stylesheet_terry.css" />
 
